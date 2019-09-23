@@ -1,4 +1,3 @@
-
 # Activar RewriteEngine
 
 RewriteEngine on
@@ -8,6 +7,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 
 #Esta condicion es verdadera cuando la ruta al REQUEST_FILENAME no hace referencia a uno archivo existente en el servidor.
+
 RewriteCond %{REQUEST_FILENAME} !-f
 
 #la parte ^ (. *) $ le dice al modulo de reescritura que queremos pasar la rutacompleta solicitada como un parametro.
