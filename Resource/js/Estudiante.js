@@ -1,0 +1,6 @@
+
+class Estudiante{
+    constructor(){
+        
+    }
+}
