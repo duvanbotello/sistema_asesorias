@@ -1,6 +1,0 @@
-
-class Estudiante{
-    constructor(){
-        
-    }
-}
