@@ -3,12 +3,12 @@
 class Index_model  
 {
     function __construct() {
-        $this->indexModel();
+        
     }
 
-    function indexModel()
+    function userLogin($email, $password)
     {
-        
+        return $email;
     }
 }
 

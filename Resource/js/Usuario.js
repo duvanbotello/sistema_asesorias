@@ -17,7 +17,14 @@ class Usuario{
                 if (validarEmail(email)) {
                     // si el correo es valido se pasa a comprobar la contraseña
                     if (5 <= password.length) {
-                        
+                        // como el correo y contraseña son validos vamos a capturar esos datos
+                        $.post(
+                            "Index/userLogin",
+                            {email, password},
+                            (response)=>{
+                                console.log(response);
+                            }
+                        );
                     }else{
                         document.getElementById("password").focus();
                         M.toast({html: 'Ingrese al menos 5 caracteres', classes: 'rounded cyan darken-4'})
