@@ -11,6 +11,13 @@ class Index extends Controllers
         $this->view->render($this,"login");
     }
 
+    public function userLogin()
+    {
+        if (isset($_POST["email"]) && isset($_POST["password"])) {
+            $this->model->userLogin($_POST["email"], $_POST["password"]);
+        }
+    }
+
 }
 
 
