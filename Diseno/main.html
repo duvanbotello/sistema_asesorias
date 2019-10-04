@@ -10,9 +10,10 @@
   <title>Asesorias</title>
 
   <!-- Lato Font -->
-  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:600' rel='stylesheet' type='text/css'>
 
   <!-- Stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery-materialize.min.opt.css?0" rel="stylesheet">
 
   <!-- Material Icons -->
@@ -75,141 +76,6 @@
       color: #888888;
       text-align: center;
     }
-
-    .additional-checkout-button {
-      border: 0 !important;
-      border-radius: 5px !important;
-      display: inline-block;
-      margin: 0 0 10px;
-      padding: 0 24px !important;
-      max-width: 100%;
-      min-width: 150px !important;
-      line-height: 44px !important;
-      text-align: center !important
-    }
-
-    .additional-checkout-button+.additional-checkout-button {
-      margin-left: 10px
-    }
-
-    .additional-checkout-button:last-child {
-      margin-bottom: 0
-    }
-
-    .additional-checkout-button span {
-      font-size: 14px !important
-    }
-
-    .additional-checkout-button img {
-      display: inline-block !important;
-      height: 1.3em !important;
-      margin: 0 !important;
-      vertical-align: middle !important;
-      width: auto !important
-    }
-
-    @media (max-width: 500px) {
-      .additional-checkout-button {
-        display: block;
-        margin-left: 0 !important;
-        padding: 0 10px !important;
-        width: 100%
-      }
-    }
-
-    .additional-checkout-button--apple-pay {
-      background-color: #000 !important;
-      color: #fff !important;
-      display: none;
-      font-family: -apple-system, Helvetica Neue, sans-serif !important;
-      min-width: 150px !important;
-      white-space: nowrap !important
-    }
-
-    .additional-checkout-button--apple-pay:hover,
-    .additional-checkout-button--apple-pay:active,
-    .additional-checkout-button--apple-pay:visited {
-      color: #fff !important;
-      text-decoration: none !important
-    }
-
-    .additional-checkout-button--apple-pay .additional-checkout-button__logo {
-      background: -webkit-named-image(apple-pay-logo-white) center center no-repeat !important;
-      background-size: auto 100% !important;
-      display: inline-block !important;
-      vertical-align: middle !important;
-      width: 3em !important;
-      height: 1.3em !important
-    }
-
-    @media (max-width: 500px) {
-      .additional-checkout-button--apple-pay {
-        display: none
-      }
-    }
-
-    .additional-checkout-button--google-pay {
-      line-height: 0 !important;
-      padding: 0 !important;
-      border-radius: unset !important;
-      width: 80px !important
-    }
-
-    @media (max-width: 500px) {
-      .additional-checkout-button--google-pay {
-        width: 100% !important
-      }
-    }
-
-    .gpay-iframe {
-      height: 44px !important;
-      width: 100% !important;
-      cursor: pointer;
-      vertical-align: middle !important
-    }
-
-    .additional-checkout-button--paypal-express {
-      background-color: #ffc439 !important
-    }
-
-    .additional-checkout-button--paypal,
-    .additional-checkout-button--venmo {
-      vertical-align: top;
-      line-height: 0 !important;
-      padding: 0 !important
-    }
-
-    .additional-checkout-button--amazon {
-      background-color: #fad676 !important;
-      position: relative !important
-    }
-
-    .additional-checkout-button--amazon .additional-checkout-button__logo {
-      -webkit-transform: translateY(4px) !important;
-      transform: translateY(4px) !important
-    }
-
-    .additional-checkout-button--amazon .alt-payment-list-amazon-button-image {
-      max-height: none !important;
-      opacity: 0 !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important
-    }
-
-    .additional-checkout-button-visually-hidden {
-      border: 0 !important;
-      clip: rect(0, 0, 0, 0) !important;
-      clip: rect(0 0 0 0) !important;
-      width: 1px !important;
-      height: 1px !important;
-      margin: -2px !important;
-      overflow: hidden !important;
-      padding: 0 !important;
-      position: absolute !important
-    }
   </style>
 
   <script crossorigin="anonymous" defer="defer"
@@ -258,30 +124,20 @@
     <div class="categories-wrapper af lighten-1">
       <div class="categories-container">
         <ul class="categories db">
-          <li class="k"><a href="#all">Todos</a></li>
-          <li><a href="#polygon">Experiencia</a></li>
-          <li><a href="#bigbang">Recomendados</a></li>
-          <li><a href="#sacred">Nuevos</a></li>
+          <li class="k"><a href="#">Todos</a></li>
+          <li><a href="#">Experiencia</a></li>
+          <li><a href="#">Recomendados</a></li>
+          <li><a href="#">Nuevos</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <ul class="side-nav" id="nav-mobile">
-    <li class="k"><a href="/pages/demo"><i class="material-icons">camera</i>Gallery</a></li>
-    <li><a href="/pages/dark-theme"><i class="material-icons">brightness_3</i>Dark Theme</a></li>
-    <li><a href="/pages/blog"><i class="material-icons">edit</i>Blog</a></li>
-    <li><a href="/pages/docs"><i class="material-icons">school</i>Docs</a></li>
-    <li><a href="/pages/full-header"><i class="material-icons">fullscreen</i>Fullscreen Header</a></li>
-    <li><a href="/pages/horizontal"><i class="material-icons">swap_horiz</i>Horizontal Style</a></li>
-    <li><a href="/pages/no-image"><i class="material-icons">texture</i>No Image Expand</a></li>
-  </ul>
-
-
 
   <!-- Core Javascript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/materialize/0.98.0/js/materialize.min.js"></script>
-  <script src="//cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery.min.opt.js?0" crossorigin="anonymous"></script>
+  <script src="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery.min.opt.js?0" crossorigin="anonymous"></script>
 
 </body>
 

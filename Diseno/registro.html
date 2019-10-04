@@ -2,7 +2,7 @@
   <html lang="en">
     <head>
       <meta charset="utf-8">
-      
+
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -23,12 +23,12 @@
 
             <div class="card">
 
-              <div class="card-action cyan darken-4 white-text center-align">
+              <div class="card-action purple lighten-2 white-text center-align">
                 <h5>Registro de Usuarios</h5>
               </div>
-              
+
               <div class="card-content">
-                
+
                 <form class="registro-form">
                   <div class="row"></div>
 
@@ -71,7 +71,7 @@
                         <label for="document">Ingrese Documento</label>
                     </div>
                   </div>
-                  
+
                     <div class="row">
                         <div class="input-field col s12">
                             <select id="tipotel">
@@ -89,7 +89,7 @@
                     </div>
 
                   <div class="card">
-                      <div class="card-action cyan darken-4 white-text center-align">
+                      <div class="card-action purple lighten-2 white-text center-align">
                         <h5>Datos de Cuenta</h5>
                       </div>
                       <div class="card-content">
@@ -114,7 +114,7 @@
                                     <label for="cuenta-email" data-error="wrong" data-success="right">Email</label>
                                 </div>
                             </div>
-        
+
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">lock_outline</i>
@@ -124,7 +124,7 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">lock_outline</i>
                                     <input id="cuenta-password2" type="password">
-                                    <label for="cuenta-password2">Repetir Contraseña</label>
+                                    <label for="cuenta-password2">Verifica tu Contraseña</label>
                                 </div>
                             </div>
                         </div>
@@ -134,11 +134,11 @@
                   <div class="row"></div>
                   <div class="row">
                     <center>
-                        <button class="btn waves-effect waves-green cyan darken-4">
-                          Registrar<i class="material-icons right">send</i></button>
+                        <button class="btn waves-effect waves-green purple lighten-2">
+                          Registrar<i class="material-icons right">check_circle</i></button>
                     </center>
                   </div>
-          
+
                 </form>
 
               </div>
@@ -147,31 +147,18 @@
         </div>
       </div>
 
-      <footer class="container cyan darken-4 white-text">
+      <footer class="container purple lighten-2 white-text">
         <p class="margin center-align medium-small">Sistema De Asesorias © 2019 - Todos Los Derechos Reservados.</p>
       </footer>
 
       <!--JavaScript at end of body for optimized loading-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
-      <script  
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+      <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
         crossorigin="anonymous">
       </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, options);
-        });
-
-        // Or with jQuery
-
-        $(document).ready(function(){
-            $('select').formSelect();
-        });
-      </script>
 
     </body>
   </html>
