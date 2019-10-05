@@ -1,19 +1,226 @@
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<html lang="en">
 
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="http://localhost/sistema_asesorias/Resource/materialize/css/materialize.min.css">
-        <link href="http://localhost/sistema_asesorias/Resource/css/style.css" rel="stylesheet">
-        
-      
-        <title>Asesor&iacute;as</title>
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <body>
+  <title>Asesorias</title>
+sss
+  <!-- Lato Font -->
+
+  <!-- Stylesheet -->
+  <link href="../Plantilla/css/materialize.min.css" rel='stylesheet' type='text/css'>
+  <link href="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery-materialize.min.opt.css?0" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script>
+  <meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/17758583/digital_wallets/dialog">
+  <meta name="shopify-checkout-api-token" content="6aacc581eb2b41d74f03c38d3c985dba">
+  <meta id="in-context-paypal-metadata" data-shop-id="17758583" data-venmo-supported="true"
+    data-environment="production" data-locale="en_US" data-paypal-v4="true" data-currency="USD">
+  <style media="all">
+    ::-webkit-input-placeholder {
+      text-indent: 0px;
+      transition: text-indent .4s ease;
+    }
+
+    ::-moz-placeholder {
+      text-indent: 0px;
+      transition: text-indent .4s ease;
+    }
+
+    :-moz-placeholder {
+      text-indent: 0px;
+      transition: text-indent .4s ease;
+    }
+
+    :-ms-input-placeholder {
+      text-indent: 0px;
+      transition: text-indent .4s ease;
+    }
+
+    :focus::-webkit-input-placeholder {
+      text-indent: -700px;
+      transition: text-indent .4s ease;
+    }
+
+    :focus::-moz-placeholder {
+      text-indent: -700px;
+      transition: text-indent .4s ease;
+    }
+
+    :focus:-moz-placeholder {
+      text-indent: -700px;
+      transition: text-indent .4s ease;
+    }
+
+    :focus:-ms-input-placeholder {
+      text-indent: -700px;
+      transition: text-indent .4s ease;
+    }
+
+    #buscadorPrincipal {
+      background-color: #FCE6FF;
+      border-radius: 20px;
+      color: #303030;
+      padding: 0 10px;
+    }
+
+    #buscadorPrincipal::placeholder {
+      color: #888888;
+      text-align: center;
+    }
+
+    .additional-checkout-button {
+      border: 0 !important;
+      border-radius: 5px !important;
+      display: inline-block;
+      margin: 0 0 10px;
+      padding: 0 24px !important;
+      max-width: 100%;
+      min-width: 150px !important;
+      line-height: 44px !important;
+      text-align: center !important
+    }
+
+    .additional-checkout-button+.additional-checkout-button {
+      margin-left: 10px
+    }
+
+    .additional-checkout-button:last-child {
+      margin-bottom: 0
+    }
+
+    .additional-checkout-button span {
+      font-size: 14px !important
+    }
+
+    .additional-checkout-button img {
+      display: inline-block !important;
+      height: 1.3em !important;
+      margin: 0 !important;
+      vertical-align: middle !important;
+      width: auto !important
+    }
+
+    @media (max-width: 500px) {
+      .additional-checkout-button {
+        display: block;
+        margin-left: 0 !important;
+        padding: 0 10px !important;
+        width: 100%
+      }
+    }
+
+    .additional-checkout-button--apple-pay {
+      background-color: #000 !important;
+      color: #fff !important;
+      display: none;
+      font-family: -apple-system, Helvetica Neue, sans-serif !important;
+      min-width: 150px !important;
+      white-space: nowrap !important
+    }
+
+    .additional-checkout-button--apple-pay:hover,
+    .additional-checkout-button--apple-pay:active,
+    .additional-checkout-button--apple-pay:visited {
+      color: #fff !important;
+      text-decoration: none !important
+    }
+
+    .additional-checkout-button--apple-pay .additional-checkout-button__logo {
+      background: -webkit-named-image(apple-pay-logo-white) center center no-repeat !important;
+      background-size: auto 100% !important;
+      display: inline-block !important;
+      vertical-align: middle !important;
+      width: 3em !important;
+      height: 1.3em !important
+    }
+
+    @media (max-width: 500px) {
+      .additional-checkout-button--apple-pay {
+        display: none
+      }
+    }
+
+    .additional-checkout-button--google-pay {
+      line-height: 0 !important;
+      padding: 0 !important;
+      border-radius: unset !important;
+      width: 80px !important
+    }
+
+    @media (max-width: 500px) {
+      .additional-checkout-button--google-pay {
+        width: 100% !important
+      }
+    }
+
+    .gpay-iframe {
+      height: 44px !important;
+      width: 100% !important;
+      cursor: pointer;
+      vertical-align: middle !important
+    }
+
+    .additional-checkout-button--paypal-express {
+      background-color: #ffc439 !important
+    }
+
+    .additional-checkout-button--paypal,
+    .additional-checkout-button--venmo {
+      vertical-align: top;
+      line-height: 0 !important;
+      padding: 0 !important
+    }
+
+    .additional-checkout-button--amazon {
+      background-color: #fad676 !important;
+      position: relative !important
+    }
+
+    .additional-checkout-button--amazon .additional-checkout-button__logo {
+      -webkit-transform: translateY(4px) !important;
+      transform: translateY(4px) !important
+    }
+
+    .additional-checkout-button--amazon .alt-payment-list-amazon-button-image {
+      max-height: none !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important
+    }
+
+    .additional-checkout-button-visually-hidden {
+      border: 0 !important;
+      clip: rect(0, 0, 0, 0) !important;
+      clip: rect(0 0 0 0) !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -2px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important
+    }
+  </style>
+
+  <script crossorigin="anonymous" defer="defer"
+    src="https://cdn.shopify.com/s/assets/shopify_pay/storefront-f95c62afca18778ed8677facd32818c864b5e4938cba1769e8d8ba0b541d41dc.js?v=20190107"></script>
+  <script integrity="sha256-qzPTa4Ven/Yc2yyXr9BKZWCTXSrPTCnbGdWsxA7YCw0=" defer="defer"
+    src="https://cdn.shopify.com/s/assets/storefront/features-ab33d36b855e9ff61cdb2c97afd04a6560935d2acf4c29db19d5acc40ed80b0d.js"
+    crossorigin="anonymous"></script>
+  <script defer="defer"
+    src="https://cdn.shopify.com/s/assets/themes_support/ga_urchin_forms-99e991855b3d8ddc69e625c68ab0579dd9927b611c2ec4943d396c72e3af0849.js"></script>
+
+  <link rel="canonical" href="https://themes.materializecss.com/pages/demo">
+</head>
+
+<body>

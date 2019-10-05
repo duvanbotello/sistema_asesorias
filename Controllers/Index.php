@@ -8,7 +8,11 @@ class Index extends Controllers
 
     public function index()
     {
-        $this->view->render($this,"login");
+        require VIEWS . DFT . "head.html";
+        $this->view->render($this, "index");
+        require VIEWS . DFT . "footer.html";
+       
+        
     }
 
     public function userLogin()

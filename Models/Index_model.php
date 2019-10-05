@@ -1,16 +1,10 @@
 <?php
-
-class Index_model  
+class Index_model extends Conexion
 {
-    function __construct() {
-        
-    }
-
-    function userLogin($email, $password)
+    public function __construct()
     {
-        return $email;
+        //Ejecutamos el metodos Constructor de la clase Conexion.
+        parent::__construct();
     }
+ 
 }
-
-
-?>
