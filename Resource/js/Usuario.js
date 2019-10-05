@@ -110,8 +110,10 @@ class Usuario{
             {nombres, apellidos, fechanac, documento, telefono, email, password},
             res => {
                 //console.log(res)
-                if (res == 0) M.toast({ html: 'Estudiante registrado satisfactoriamente' })
-                else M.toast({ html: res })
+                if (res == 0) {
+                    M.toast({ html: 'Estudiante registrado satisfactoriamente' })
+                    $('#formRegistroEstudiante')[0].reset()
+                } else M.toast({ html: res })
             }
         )
     }

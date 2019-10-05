@@ -2,6 +2,10 @@
 // codigo de Estudiantes (Usuarios)
 var usuario = new Usuario();
 
+$(document).ready(function(){
+    $('select').formSelect()
+})
+
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;

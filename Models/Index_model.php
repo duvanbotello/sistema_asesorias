@@ -11,21 +11,21 @@ class Index_model extends Conexion
     {
         //creo la restriccion
         $where = "usu_correo = :Correo";
-        
+
         //creo un parametro llamado 'Email' y le asigno lo que venga por $email
         $param = array('Correo' => $email);
         //utilizo el objeto db que esta en la clase conexion y es una instancia de la clase QueryManager
         //para utilizar el metodo select1 y hacer la consulta a la base de datos
         $response = $this->db->select1("*", 'usuario', $where, $param);
-        
+
         //verifico si se devolvio un arrat
         if (is_array($response)) {
             //le coloco un index al array llamado results
             $response = $response['results'];
             if (0 != count($response)) {
-               
+
                 //verifico que el password enviado desde la vista se igual al almacenado en la BD
-                if (password_verify($password, $response[0]["usu_contrasena"]) && $response[0]["usu_correo"] == $email) {
+                if (password_verify($password, $response[0]["usu_contraseña"]) && $response[0]["usu_correo"] == $email) {
                     //si es correcto retorno un array con los datos del usuario.
                     $data = array(
                         "idcliente" => $response[0]["usu_id"],
@@ -46,10 +46,10 @@ class Index_model extends Conexion
             } else {
                 return "El email no esta registrado";
             }
-        } else { 
+        } else {
             return $response;
         }
-        
+
     }
- 
+
 }
