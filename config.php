@@ -8,6 +8,6 @@
     define('DFT', 'Default/');
     define('PCP', 'Principal/');
     define('RQ','Resource/');
-    define('URL','http://localhost/sistema_asesoria/');
+    define('URL','http://localhost/sistema_asesorias/');
 ?>
 
