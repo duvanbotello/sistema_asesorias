@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_box</i>
-                            <input id="nombres" type="text">
+                            <input id="nombres" name="nombres" type="text">
                             <label for="nombres">Ingresar Nombres</label>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_box</i>
-                            <input id="apellidos" type="text">
+                            <input id="apellidos" name="apellidos" type="text">
                             <label for="apellidos">Ingresar Apellidos</label>
                         </div>
                     </div>
@@ -33,15 +33,15 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">date_range</i>
-                            <input id="fechanac" type="date">
+                            <input id="fechanac" name="fechanac" type="date">
                             <label for="fechanac">Fecha Nacimiento</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <select id="tipodoc">
-                                <option value="" disabled selected>Seleccione...</option>
+                            <select id="tipodoc" name="tipodoc">
+                                <option selected value="0">Seleccione...</option>
                                 <option value="1">Cedula</option>
                                 <option value="2">Tarjeta de Identidad</option>
                             </select>
@@ -49,15 +49,15 @@
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">assignment_ind</i>
-                            <input id="document" type="text">
+                            <input id="documento" name="documento" type="text">
                             <label for="document">Ingrese Documento</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <select id="tipotel">
-                                <option value="" disabled selected>Seleccione...</option>
+                            <select id="tipotel" name="tipotel">
+                                <option selected value="0">Seleccione...</option>
                                 <option value="1">Celular</option>
                                 <option value="2">Fijo</option>
                             </select>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">call</i>
-                            <input id="numtel" type="text">
+                            <input id="numtel" name="numtel" type="text">
                             <label for="numtel">Ingrese Numero</label>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
 
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <select id="tipodoc">
-                                            <option value="" disabled selected>Seleccione...</option>
+                                        <select id="tiporol" name="tiporol">
+                                            <option selected value="0">Seleccione...</option>
                                             <option value="1">Estudiante</option>
                                             <option value="2">Asesor</option>
                                         </select>
@@ -92,21 +92,21 @@
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">mail_outline</i>
-                                        <input class="validate" id="cuenta-email" type="email">
-                                        <label for="cuenta-email" data-error="wrong" data-success="right">Email</label>
+                                        <input class="validate" id="email" name="email" type="email">
+                                        <label for="email" data-error="wrong" data-success="right">Email</label>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">lock_outline</i>
-                                        <input id="cuenta-password" type="password">
-                                        <label for="cuenta-password">Contraseña</label>
+                                        <input id="password" name="password" type="password">
+                                        <label for="password">Contraseña</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">lock_outline</i>
-                                        <input id="cuenta-password2" type="password">
-                                        <label for="cuenta-password2">Verifica tu Contraseña</label>
+                                        <input id="password2" name="password2" type="password">
+                                        <label for="password2">Verifica tu Contraseña</label>
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +116,8 @@
                     <div class="row"></div>
                     <div class="row">
                         <center>
-                            <button class="btn waves-effect waves-green purple lighten-2">
-                                Registrar<i class="material-icons right">check_circle</i></button>
+                            <a onclick="registrarEstudiante()" class="btn waves-effect waves-green purple lighten-2">
+                                Registrar<i class="material-icons right">check_circle</i></a>
                         </center>
                     </div>
 

@@ -6,7 +6,7 @@ class QueryManager
     {
         try {
             $this->pdo = new PDO(
-                'mysql:host=localhost;dbname=' . $db . ';charset-utf8',
+                'mysql:host=localhost;dbname=' . $db . ';charset=utf8',
                 $user,
                 $password,
                 [
@@ -41,10 +41,10 @@ class QueryManager
             }else{
                 $sth->execute($param);
             }
-            
+
             //guardo todos los datos de la consulta dentro de un array
             $response = $sth->fetchALL(PDO::FETCH_ASSOC);
-            
+
             //retorno un array con el resultado
             return array("results" => $response);
         } catch (PDOExepcion $e) {
@@ -52,22 +52,35 @@ class QueryManager
         }
         $pdo = null;
     }
-    function insert($attr, $table, $values, $param)
-    {
+
+    function select($attr, $table, $where, $param) {
         try {
-            $query = "INSERT INTO " . $table . " " . $attr . " VALUES " . $values;
+            if ($where == '') $query = "SELECT ".$attr." FROM ".$table;
+            else $query = "SELECT ".$attr." FROM ".$table." WHERE ".$where;
             $sth = $this->pdo->prepare($query);
-            if ($sth->execute($param)) {
-                return 2;
-            } else {
-                return $sth;
-            }
-        } catch (PDOExepcion $e) {
+            if ($where == '') $sth->execute();
+            else $sth->execute($param);
+
+            $response = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            return array('results' => $response);
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
         $pdo = null;
     }
-   
+
+    function insert($table, $value, $param) {
+        try {
+            $query = 'INSERT INTO '.$table.$value;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($param);
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     function update($table, $where, $newvalue, $campo,$param)
     {
         try {
@@ -98,7 +111,7 @@ class QueryManager
     function getHabitaciones()
     {
         try {
-            $query = "select h.idhabitaciones, i.url, h.numHabitacion, th.descripcion, th.precio, h.estado from habitaciones as h 
+            $query = "select h.idhabitaciones, i.url, h.numHabitacion, th.descripcion, th.precio, h.estado from habitaciones as h
                       inner join tipo_habitacion as th on h.tipo_habitacion  = th.idtipo_habitacion
                       inner join images as i on h.idhabitaciones = i.idhabitaciones
                     where h.estado = 2;";
@@ -111,6 +124,6 @@ class QueryManager
         }
         $pdo = null;
     }
-   
+
 }
 ?>
