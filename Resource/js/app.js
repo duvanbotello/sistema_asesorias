@@ -1,10 +1,11 @@
 
-// codigo de Estudiantes (Usuarios)
-var usuario = new Usuario();
-
+// cargar selects del formulario registro
 $(document).ready(function(){
     $('select').formSelect()
 })
+
+// codigo de Estudiantes (Usuarios)
+var usuario = new Usuario();
 
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
@@ -28,7 +29,7 @@ var registrarEstudiante = () => {
     var password2 = window.document.getElementById('password2')
     if (validarNombre(nombres) && validarNombre(apellidos) && validarDocumento(documento) && validarTelefono(telefono) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
         if (password.value === password2.value) usuario.registrarEstudiante(nombres.value, apellidos.value, fechanac.value, documento.value, telefono.value, email.value, password.value)
-        else M.toast({ html: 'Tus contraseñas no coinciden', class: 'rounded' })
+        else M.toast({ html: 'Tus contraseñas no coinciden', class: 'rounded cyan darken-2' })
     }
 }
 
