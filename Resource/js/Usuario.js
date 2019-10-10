@@ -78,10 +78,10 @@ class Usuario{
         localStorage.removeItem("asesor");
     }
 
-    registrar(nombres, apellidos, fechanac, documento, telefono, email, password) {
+    registrar(tipodoc, nombres, apellidos, fechanac, documento, tiporol, tipotel, telefono, email, password) {
         $.post(
             URL + "Registro/registrar",
-            {nombres, apellidos, fechanac, documento, telefono, email, password},
+            {tipodoc, nombres, apellidos, fechanac, documento, tiporol, tipotel, telefono, email, password},
             res => {
                 //console.log(res)
                 if (res == 0) {

@@ -29,6 +29,24 @@ var validarTipoDoc = tipodoc => {
     return true
 }
 
+var validarTipoRol = tiporol => {
+    if (tiporol.value == '0') {
+        M.toast({html: 'Debes seleccionar tu tipo de rol', classes: 'rounded cyan darken-2'})
+        tiporol.focus()
+        return false
+    }
+    return true
+}
+
+var validarTipoTel = tipotel => {
+    if (tipotel.value == '0') {
+        M.toast({html: 'Debes seleccionar tu tipo de telefono', classes: 'rounded cyan darken-2'})
+        tipotel.focus()
+        return false
+    }
+    return true
+}
+
 var validarDocumento = doc => {
     if (doc.value == '') {
         M.toast({html: 'Debes ingresar tu documento', classes: 'rounded cyan darken-2'})
