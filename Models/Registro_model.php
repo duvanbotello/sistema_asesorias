@@ -4,7 +4,7 @@
             parent::__construct();
         }
 
-        public function registrarEstudiante($nombres, $apellidos, $fechanac, $documento, $telefono, $email, $password) {
+        public function registrar($nombres, $apellidos, $fechanac, $documento, $telefono, $email, $password) {
             $where = 'usu_documento = :documento or usu_correo = :email';
             $param = array(
                 'documento' => $documento,

@@ -10,8 +10,8 @@
             require VIEWS . DFT . "footer.html";
         }
 
-        public function registrarEstudiante() {
-            $data = $this->model->registrarEstudiante($_POST['nombres'], $_POST['apellidos'], $_POST['fechanac'], $_POST['documento'], $_POST['telefono'], $_POST['email'], $_POST['password']);
+        public function registrar() {
+            $data = $this->model->registrar($_POST['nombres'], $_POST['apellidos'], $_POST['fechanac'], $_POST['documento'], $_POST['telefono'], $_POST['email'], $_POST['password']);
             if ($data == 1) echo 'El documento o el correo electrónico ya se encuentran registrado';
             else echo $data;
         }

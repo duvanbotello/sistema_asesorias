@@ -44,7 +44,11 @@ class Usuario{
                                 //el metodo localstore nos permite crear elementos para almacenarlos
                                 //en la memoria de nuestro navegador
                                 //con tiene la llave user y almacena la informacion de response
-                                localStorage.setItem("estudiante", response);
+                                if(item.rol == 1){
+                                    localStorage.setItem("estudiante", response);
+                                }else{
+                                    localStorage.setItem("asesor", response);
+                                }
                                 //si el inicio de session es correcto lo enviamos al controlador Principal
                                 //para que abra la vista principal
                                 window.location.href = URL + "Index/index";
@@ -66,21 +70,26 @@ class Usuario{
             }
         }
     }
+    
     sessionCLose() {
         localStorage.removeItem("estudiante");
     }
+    sessionCLoseAsesor() {
+        localStorage.removeItem("asesor");
+    }
 
-    registrarEstudiante (nombres, apellidos, fechanac, documento, telefono, email, password) {
+    registrar(nombres, apellidos, fechanac, documento, telefono, email, password) {
         $.post(
-            URL + 'Registro/registrarEstudiante',
+            URL + "Registro/registrar",
             {nombres, apellidos, fechanac, documento, telefono, email, password},
             res => {
                 //console.log(res)
                 if (res == 0) {
-                    M.toast({ html: 'Estudiante registrado satisfactoriamente', classes: 'rounded cyan darken-2' })
-                    $('#formRegistroEstudiante')[0].reset()
+                    M.toast({ html: 'Usuario registrado satisfactoriamente', classes: 'rounded cyan darken-2' })
+                    $('#formRegistro')[0].reset()
                 } else M.toast({ html: res })
             }
         )
     }
+
 }

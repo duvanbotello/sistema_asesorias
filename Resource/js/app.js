@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('select').formSelect()
 })
 
-// codigo de Estudiantes (Usuarios)
+// instanciamos las clases necesarias
 var usuario = new Usuario();
 
 var iniciarSesion = ()=>{
@@ -17,8 +17,11 @@ var iniciarSesion = ()=>{
 var sessionClose = () => {
     usuario.sessionCLose();
 }
+var sessionCloseAsesor = () => {
+    usuario.sessionCLoseAsesor();
+}
 
-var registrarEstudiante = () => {
+var registrar = () => {
     var nombres = window.document.getElementById('nombres')
     var apellidos = window.document.getElementById('apellidos')
     var fechanac = window.document.getElementById('fechanac')
@@ -28,7 +31,7 @@ var registrarEstudiante = () => {
     var password = window.document.getElementById('password')
     var password2 = window.document.getElementById('password2')
     if (validarNombre(nombres) && validarNombre(apellidos) && validarDocumento(documento) && validarTelefono(telefono) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
-        if (password.value === password2.value) usuario.registrarEstudiante(nombres.value, apellidos.value, fechanac.value, documento.value, telefono.value, email.value, password.value)
+        if (password.value === password2.value) usuario.registrar(nombres.value, apellidos.value, fechanac.value, documento.value, telefono.value, email.value, password.value)
         else M.toast({ html: 'Tus contraseñas no coinciden', class: 'rounded cyan darken-2' })
     }
 }

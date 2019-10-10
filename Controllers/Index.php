@@ -19,10 +19,16 @@ class Index extends Controllers
     {
         $estudiante = null;
         $estudiante = isset($_SESSION["estudiante"]);
+        $asesor = null;
+        $asesor = isset($_SESSION["asesor"]);
 
         if (null != $estudiante) {
             require VIEWS . DFT . "head.html";
             $this->view->render($this, "PrincipalEstudiante");
+            require VIEWS . DFT . "footer.html";
+        } else if (null != $asesor) {
+            require VIEWS . DFT . "head.html";
+            $this->view->render($this, "PrincipalAsesor");
             require VIEWS . DFT . "footer.html";
         } else {
             //redireccionamos el usuario a la vista login

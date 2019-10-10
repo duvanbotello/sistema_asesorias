@@ -10,8 +10,13 @@
       <ul class="bt hide-on-med-and-down">
         <li class="k"><a href="#">Inicio</a></li>
         <li ><a href="#">Quienes Somos</a></li>
-        <li ><a href="http://localhost/sistema_asesorias/Buscar/carga">Encontrar Asesor</a></li>
-        <li ><a href="http://localhost/sistema_asesorias/Login/carga">Iniciar Sesión</a></li>
+        <li><a class='dropdown-button' href='#' data-activates='feature-dropdown' data-belowOrigin="true"
+            data-constrainWidth="false">Mi Perfil<i class="material-icons bt">arrow_drop_down</i></a></li>
+      </ul>
+      <!-- Dropdown Structure -->
+      <ul id='feature-dropdown' class='dropdown-content'>
+        <li><a href="http://localhost/sistema_asesorias/Login/carga">Ver Perfil</a></li>
+        <li><a href="http://localhost/sistema_asesorias/Index/destroySession" onclick="sessionCloseAsesor();">Cerrar Sesion</a></li>
       </ul>
 
       <div class="nav-header de">

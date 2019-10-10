@@ -35,8 +35,14 @@ class Index_model extends Conexion
                         "tipo_documento" => $response[0]["tipodoc_id"],
                         "rol" => $response[0]["usu_rol_id"],
                     );
+                    
                     //creo una variable de session y envio los datos del usuario
-                    Session::setSession("estudiante", $data);
+                    if($response[0]["usu_rol_id"] == 1){
+                        Session::setSession("estudiante", $data);
+                    }else{
+                        Session::setSession("asesor", $data);
+                    }
+                    
                     return $data;
                 } else {
                     //de lo contrario retorno IdUsuario 0, quiere decir que los datos de session son incorrectos.
