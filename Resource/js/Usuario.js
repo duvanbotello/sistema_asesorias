@@ -28,7 +28,7 @@ class Usuario{
                     //le enviamos como parametro la ruta del controlador
                     //y optenemos respuesta atraves de response.
 
-                    $.post("http://localhost/sistema_asesorias/Index/userLogin", { email, password }, (response) => {
+                    $.post(URL + "Index/userLogin", { email, password }, (response) => {
                         console.log(response)
                         try {
 
@@ -40,7 +40,7 @@ class Usuario{
                             //Verifico que el idUsuario sea mayor a 0 para verificar que el inicio de
                             //session sea valido.
 
-                            if (0 < item.idcliente) {
+                            if (0 < item.idusuario) {
                                 //el metodo localstore nos permite crear elementos para almacenarlos
                                 //en la memoria de nuestro navegador
                                 //con tiene la llave user y almacena la informacion de response

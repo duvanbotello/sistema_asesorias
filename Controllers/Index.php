@@ -6,6 +6,7 @@ class Index extends Controllers
     {
         parent::__construct();
     }
+
     public function destroySession()
     {
         //utilizamos el metodo destroy de la clase Sessiones
@@ -13,12 +14,13 @@ class Index extends Controllers
         //y redirecciona a la URL principal, osea al index
         header("Location:" . URL);
     }
+
     public function index()
     {
         $estudiante = null;
-        $recep = isset($_SESSION["estudiante"]);
+        $estudiante = isset($_SESSION["estudiante"]);
 
-        if (null != $recep) {
+        if (null != $estudiante) {
             require VIEWS . DFT . "head.html";
             $this->view->render($this, "PrincipalEstudiante");
             require VIEWS . DFT . "footer.html";
@@ -49,4 +51,5 @@ class Index extends Controllers
             }
         }
     }
+    
 }
