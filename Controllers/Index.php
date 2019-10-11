@@ -40,7 +40,6 @@ class Index extends Controllers
             //utilizar todas las clases dentro de Models
             //y utilizo la instancia model para el metodo UserLogin que esta dentro de index_model
             $data = $this->model->userLogin($_POST["email"], $_POST["password"]);
-
             //verificamos si es un array o contiene un array
             if (is_array($data)) {
                 echo json_encode($data);

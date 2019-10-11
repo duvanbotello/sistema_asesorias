@@ -9,8 +9,7 @@ $(document).ready(function(){
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-
-    usuario.iniciarSesion(email, password);
+    usuario.iniciarSesion(email, password); 
 }
 
 var sessionClose = () => {
