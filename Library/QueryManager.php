@@ -22,7 +22,7 @@ class QueryManager
     //creamos el metodo para hacer las consultas
     //pedimos como parametros las columnubas a consultas, el nombre de la tabla
     //la restriccion y los parametros de las restriciones
-    function select1($attr, $table, $where, $param)
+    function select($attr, $table, $where, $param)
     {
         try {
             //verificamos si el where trae datos.
@@ -53,22 +53,24 @@ class QueryManager
         $pdo = null;
     }
 
-    function select($attr, $table, $where, $param) {
-        try {
-            if ($where == '') $query = "SELECT ".$attr." FROM ".$table;
-            else $query = "SELECT ".$attr." FROM ".$table." WHERE ".$where;
-            $sth = $this->pdo->prepare($query);
-            if ($where == '') $sth->execute();
-            else $sth->execute($param);
+    // forma minimizada de la funcion select
 
-            $response = $sth->fetchAll(PDO::FETCH_ASSOC);
+    // function select($attr, $table, $where, $param) {
+    //     try {
+    //         if ($where == '') $query = "SELECT ".$attr." FROM ".$table;
+    //         else $query = "SELECT ".$attr." FROM ".$table." WHERE ".$where;
+    //         $sth = $this->pdo->prepare($query);
+    //         if ($where == '') $sth->execute();
+    //         else $sth->execute($param);
 
-            return array('results' => $response);
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-        $pdo = null;
-    }
+    //         $response = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    //         return array('results' => $response);
+    //     } catch (PDOException $e) {
+    //         return $e->getMessage();
+    //     }
+    //     $pdo = null;
+    // }
 
     function insert($table, $value, $param) {
         try {
@@ -96,6 +98,7 @@ class QueryManager
         }
         $pdo = null;
     }
+
     function EstadoHabitacion($idhabitacion)
     {
         try {
@@ -108,6 +111,7 @@ class QueryManager
         }
         $pdo = null;
     }
+    
     function getHabitaciones()
     {
         try {
