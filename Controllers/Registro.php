@@ -11,7 +11,7 @@
         }
 
         public function registrar() {
-            $data = $this->model->registrar($_POST['tipodoc'], $_POST['nombres'], $_POST['apellidos'], $_POST['fechanac'], $_POST['documento'], $_POST['tiporol'], $_POST['tipotel'], $_POST['telefono'], $_POST['email'], $_POST['password']);
+            $data = $this->model->registrar($_POST['nombres'], $_POST['apellidos'], $_POST['fechanac'], $_POST['tipodoc'], $_POST['documento'], $_POST['tipotel'], $_POST['telefono'], $_POST['tiporol'], $_POST['email'], $_POST['password']);
             if ($data == 1) echo 'El documento o el correo electrónico ya se encuentran registrado';
             else echo $data;
         }

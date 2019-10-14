@@ -33,7 +33,7 @@ class Index_model extends Conexion
                         "nombre" => $response[0]["usu_nombres"],
                         "apellido" => $response[0]["usu_apellidos"],
                         "tipo_documento" => $response[0]["tipodoc_id"],
-                        "rol" => $response[0]["usu_rol_id"],
+                        "rol" => $response[0]["usu_rol_id"]
                     );
                     
                     //creo una variable de session y envio los datos del usuario
