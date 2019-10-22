@@ -8,9 +8,28 @@ class Login extends Controllers
 
     public function carga()
     {
-        require VIEWS . DFT . "head.html";
+
+        $estudiante = null;
+        $estudiante = isset($_SESSION["estudiante"]);
+        $asesor = null;
+        $asesor = isset($_SESSION["asesor"]);
+
+        if (null != $estudiante) {
+            require VIEWS . DFT . "head.html";
+            require VIEWS . IND . "PrincipalEstudiante.html";
+            require VIEWS . DFT . "footer.html";
+        } else if (null != $asesor) {
+            require VIEWS . DFT . "head.html";
+            require VIEWS . IND . "PrincipalAsesor.html";
+            require VIEWS . DFT . "footer.html";
+        } else {
+            //redireccionamos el usuario a la vista login
+            require VIEWS . DFT . "head.html";
         $this->view->render($this, "login");
         require VIEWS . DFT . "footer.html";
+        }
+
+        
         
     }
     
@@ -52,6 +71,3 @@ class Login extends Controllers
 
 
 }
-
-
-?>
