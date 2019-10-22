@@ -40,7 +40,7 @@ class Usuario{
                             //Verifico que el idUsuario sea mayor a 0 para verificar que el inicio de
                             //session sea valido.
 
-                            if (0 < item.idusuario) {
+                            if (0 < item.num_documento) {
                                 //el metodo localstore nos permite crear elementos para almacenarlos
                                 //en la memoria de nuestro navegador
                                 //con tiene la llave user y almacena la informacion de response
@@ -107,7 +107,7 @@ class Usuario{
             URL + "Registro/registrar",
             {nombres, apellidos, fechanac, tipodoc, documento, tipotel, telefono, tiporol, email, password},
             res => {
-                //console.log(res)
+                console.log(res)
                 if (res == 0) {
                     M.toast({ html: 'Usuario registrado satisfactoriamente', classes: 'rounded cyan darken-2' })
                     $('#formRegistro')[0].reset()
