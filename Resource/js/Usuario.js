@@ -78,10 +78,34 @@ class Usuario{
         localStorage.removeItem("asesor");
     }
 
-    registrar(tipodoc, nombres, apellidos, fechanac, documento, tiporol, tipotel, telefono, email, password) {
+    recuperarPassword(email) {
+        $.post(URL + "Login/recuperarPassword", {email},
+            res => {
+                //console.log(res)
+                if (res == 0) {
+                    M.toast({ html: 'Solicitud enviada a su correo electronico', classes: 'rounded cyan darken-2' })
+                    $('#formRecuperar')[0].reset()
+                } else M.toast({ html: res })
+            }
+        )
+    }
+
+    actualizarPassword(password) {
+        $.post(URL + "Login/actualizarPassword", {password},
+            res => {
+                //console.log(res)
+                if (res == 0) {
+                    M.toast({ html: 'Contraseña actualizada', classes: 'rounded cyan darken-2' })
+                    // $('#formActualizar')[0].reset()
+                } else M.toast({ html: res })
+            }
+        )
+    }
+
+    registrar(nombres, apellidos, fechanac, tipodoc, documento, tipotel, telefono, tiporol, email, password) {
         $.post(
             URL + "Registro/registrar",
-            {tipodoc, nombres, apellidos, fechanac, documento, tiporol, tipotel, telefono, email, password},
+            {nombres, apellidos, fechanac, tipodoc, documento, tipotel, telefono, tiporol, email, password},
             res => {
                 //console.log(res)
                 if (res == 0) {
