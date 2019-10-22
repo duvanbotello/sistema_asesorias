@@ -53,5 +53,7 @@ var registrar = () => {
 }
 
 $().ready(()=>{
-
+    let URLactual = window.location.pathname;
+    let URLactual2 = window.location;
+    usuario.userData(URLactual);
 });

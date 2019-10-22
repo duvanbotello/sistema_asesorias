@@ -102,6 +102,38 @@ class Usuario{
         )
     }
 
+    userData(URLactual) {
+        //si nos encontramos en el login elimino los datos de navegacion que estan en el navegador
+        //PATHNAME es una contante que inicie en config.js
+        if (PATHNAME == URLactual) {
+            //removemo los datos del navegador
+            localStorage.removeItem("user");
+        } else {
+            if (null != localStorage.getItem("estudiante")) {
+                //convierto los datos del usuario que estan en el navegador en una coleccion de datos
+                let estudiante = JSON.parse(localStorage.getItem("estudiante"));
+              
+                if (0 < estudiante.num_documento) {
+                    //enviamos los datos al elemento con id name1
+                    document.getElementById("name1").innerHTML = estudiante.nombre + " " + estudiante.apellido + " Rol:"+ estudiante.rol;
+                }
+            }
+            if (null != localStorage.getItem("asesor")) {
+                //convierto los datos del usuario que estan en el navegador en una coleccion de datos
+                let asesor = JSON.parse(localStorage.getItem("asesor"));
+               
+                if (0 < asesor.num_documento) {
+                    //enviamos los datos al elemento con id name1
+                    document.getElementById("name1").innerHTML = asesor.nombre + " " + asesor.apellido + " Rol:"+ asesor.rol;
+                }
+            }
+        }
+    }
+
+    
+
+
+
     registrar(nombres, apellidos, fechanac, tipodoc, documento, tipotel, telefono, tiporol, email, password) {
         $.post(
             URL + "Registro/registrar",
