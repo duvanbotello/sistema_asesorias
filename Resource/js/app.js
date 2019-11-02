@@ -52,9 +52,17 @@ var registrar = () => {
     }
 }
 
+var cargarAsesoresTodos = tipo => usuario.cargarAsesores(tipo)
+
+var cargarAsesoresExperiencia = tipo => usuario.cargarAsesores(tipo)
+
+var cargarAsesoresRecomendados = tipo => usuario.cargarAsesores(tipo)
+
+var cargarAsesoresNuevos = tipo => usuario.cargarAsesores(tipo)
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     let URLactual2 = window.location;
     usuario.userData(URLactual);
-    if(URLactual == '/sistema_asesorias/Buscar/carga') usuario.cargarAsesores()
+    if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
 });

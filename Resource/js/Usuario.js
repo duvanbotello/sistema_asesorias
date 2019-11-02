@@ -161,11 +161,13 @@ class Usuario{
         return edad
     }
 
-    cargarAsesores() {
+    cargarAsesores(tipo) {
+        console.log(tipo)
         $.get(
             URL + "Buscar/cargarAsesores",
-            {},
+            {tipo},
             res => {
+                console.log(res)
                 try {
                     const data = JSON.parse(res)
                     let body = ''
@@ -195,6 +197,7 @@ class Usuario{
                         </div>
                         `
                     })
+                    $('#listadeAsesores > div').remove()
                     $('#listadeAsesores').append(body)
                 } catch (err) {
                     console.log(err)

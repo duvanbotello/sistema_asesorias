@@ -23,14 +23,33 @@
     </div>
 
     <!-- Fixed Masonry Filters -->
-    <div class="categories-wrapper af lighten-1">
+    <div id="menuBusquedaAsesor" class="categories-wrapper af lighten-1">
       <div class="categories-container">
         <ul class="categories db">
-          <li class="k"><a href="#">Todos</a></li>
-          <li><a href="#">Experiencia</a></li>
-          <li><a href="#">Recomendados</a></li>
-          <li><a href="#">Nuevos</a></li>
+          <li class="k" onclick="cargarAsesoresTodos('Todos')"><a>Todos</a></li>
+          <li onclick="cargarAsesoresTodos('Experiencia')"><a>Experiencia</a></li>
+          <li onclick="cargarAsesoresTodos('Recomendados')"><a>Recomendados</a></li>
+          <li onclick="cargarAsesoresTodos('Nuevos')"><a>Nuevos</a></li>
         </ul>
       </div>
     </div>
+
   </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s1"></div>
+      <div id="listadeAsesores" class="col s10">
+  
+            <!--<ul class="pagination">
+              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+              <li class="cyan darken-2 active"><a href="#!">1</a></li>
+              <li class="waves-effect"><a href="#!">2</a></li>
+              <li class="waves-effect"><a href="#!">3</a></li>
+              <li class="waves-effect"><a href="#!">4</a></li>
+              <li class="waves-effect"><a href="#!">5</a></li>
+              <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>-->
+      </div>
+      <div class="col s1"></div>
+    </div>
+  </div>

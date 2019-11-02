@@ -33,7 +33,10 @@ USE `asesoria`;
 DROP TABLE IF EXISTS `asesor`;
 CREATE TABLE `asesor` (
   `idasesor` int(11) NOT NULL,
-  `usuario_usu_documento` varchar(45) NOT NULL
+  `usuario_usu_documento` varchar(45) NOT NULL,
+  `usas_experiencia` float(8, 2) NOT NULL,
+  `usas_recomendado` bigint(20) NOT NULL,
+  `usas_fechacreacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

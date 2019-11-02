@@ -12,7 +12,7 @@ class Buscar extends Controllers {
     }
 
     public function cargarAsesores() {
-        $data = $this->model->cargarAsesores();
+        $data = $this->model->cargarAsesores($_GET["tipo"]);
         if(is_array($data)) echo json_encode($data);
         else echo $data;
     }
