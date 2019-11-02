@@ -56,4 +56,5 @@ $().ready(()=>{
     let URLactual = window.location.pathname;
     let URLactual2 = window.location;
     usuario.userData(URLactual);
+    if(URLactual == '/sistema_asesorias/Buscar/carga') usuario.cargarAsesores()
 });

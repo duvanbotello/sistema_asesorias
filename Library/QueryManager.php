@@ -81,6 +81,7 @@ class QueryManager
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+        $pdo = null;
     }
 
     function update($table, $where, $newvalue, $campo,$param)
