@@ -1,42 +1,61 @@
- <!-- Navbar and Header -->
- <nav class="nav-extended">
-        <div class="nav-background">
-          <div class="ea k"
-            style="background-image: url('http://localhost/sistema_asesorias/Resource/imgs/icon-seamless.webp');"></div>
-    
-          </div>
-        <div class="nav-wrapper db">
-          <a href="#" class="brand-logo"><i class="material-icons">book</i>Asesorias</a>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul class="bt hide-on-med-and-down">
-            <li class="k"><a href="#">Inicio</a></li>
-            <li ><a href="#">Quienes Somos</a></li>
-            <li ><a href="http://localhost/sistema_asesorias/Buscar/carga">Encontrar Asesor</a></li>
-            <li><a class='dropdown-button' href='#' data-activates='feature-dropdown' data-belowOrigin="true"
-                data-constrainWidth="false" id="name1"><i class="material-icons bt">arrow_drop_down</i></a></li>
-          </ul>
-          <!-- Dropdown Structure -->
-          <ul id='feature-dropdown' class='dropdown-content'>
-            <li><a href="http://localhost/sistema_asesorias/Login/carga">Ver Perfil</a></li>
-            <li><a href="http://localhost/sistema_asesorias/Index/destroySession" onclick="sessionClose();">Cerrar Sesion</a></li>
-          </ul>
-    
-          <div class="nav-header de">
-            <h1>Agenda tu encuentro con el asesor que desees</h1>
-            <div class="ge">Crece en Conocimiento</div>
-            <input id="buscadorPrincipal" type="text" placeholder="¿Qué tema quieres aprender?">
-          </div>
-        </div>
-    
-        <!-- Fixed Masonry Filters -->
-        <div class="categories-wrapper af lighten-1">
-          <div class="categories-container">
-            <ul class="categories db">
-              <li class="k"><a href="#">Todos</a></li>
-              <li><a href="#">Experiencia</a></li>
-              <li><a href="#">Recomendados</a></li>
-              <li><a href="#">Nuevos</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<!-- Navbar and Header -->
+<nav class="nav-extended">
+  <div class="nav-background">
+    <div class="ea k"
+      style="background-image: url('http://localhost/sistema_asesorias/Resource/imgs/icon-seamless.webp');"></div>
+
+  </div>
+  <div class="nav-wrapper db">
+    <a href="#" class="brand-logo"><i class="material-icons">book</i>Asesorias</a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="bt hide-on-med-and-down">
+      <li class="k"><a href="http://localhost/sistema_asesorias/Index/index">Inicio</a></li>
+      <li><a href="#">Quienes Somos</a></li>
+      <li><a href="http://localhost/sistema_asesorias/Buscar/carga">Encontrar Asesor</a></li>
+      <li><a class='dropdown-button' href='#' data-activates='feature-dropdown' data-belowOrigin="true"
+          data-constrainWidth="false" id="name1"><i class="material-icons bt">arrow_drop_down</i></a></li>
+    </ul>
+    <!-- Dropdown Structure -->
+    <ul id='feature-dropdown' class='dropdown-content'>
+      <li><a href="http://localhost/sistema_asesorias/Estudiante/miperfil">Ver Perfil</a></li>
+      <li><a href="http://localhost/sistema_asesorias/Index/destroySession" onclick="sessionClose();">Cerrar Sesion</a>
+      </li>
+    </ul>
+
+    <div class="nav-header de">
+      <h1>Agenda tu encuentro con el asesor que desees</h1>
+      <div class="ge">Crece en Conocimiento</div>
+      <input id="buscadorPrincipal" type="text" placeholder="¿Qué tema quieres aprender?">
+    </div>
+  </div>
+
+  <div id="menuBusquedaAsesor" class="categories-wrapper af lighten-1">
+    <div class="categories-container">
+      <ul class="categories db">
+        <li class="k" onclick="cargarAsesoresTodos('Todos')"><a>Todos</a></li>
+        <li onclick="cargarAsesoresTodos('Experiencia')"><a>Experiencia</a></li>
+        <li onclick="cargarAsesoresTodos('Recomendados')"><a>Recomendados</a></li>
+        <li onclick="cargarAsesoresTodos('Nuevos')"><a>Nuevos</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col s1"></div>
+    <div id="listadeAsesores" class="col s10">
+
+      <!--<ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="cyan darken-2 active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                  </ul>-->
+    </div>
+    <div class="col s1"></div>
+  </div>
+</div>
