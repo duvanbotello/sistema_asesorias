@@ -17,4 +17,10 @@ class Buscar extends Controllers {
         else echo $data;
     }
 
+    public function obtenerAsesor() {
+        $data = $this->model->obtenerAsesor($_GET["documento"]);
+        if(is_array($data)) echo json_encode($data);
+        else echo $data;
+    }
+
 }

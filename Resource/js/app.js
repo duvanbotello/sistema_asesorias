@@ -60,9 +60,13 @@ var cargarAsesoresRecomendados = tipo => usuario.cargarAsesores(tipo)
 
 var cargarAsesoresNuevos = tipo => usuario.cargarAsesores(tipo)
 
+function verPerfilAsesor(document) {
+    usuario.verPerfilAsesor(document)
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
-    let URLactual2 = window.location;
     usuario.userData(URLactual);
     if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
-});
+    if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
+})

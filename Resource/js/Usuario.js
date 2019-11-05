@@ -1,8 +1,7 @@
 
 class Usuario{
-    constructor(){
 
-    }
+    constructor() {}
 
     iniciarSesion(email, password) {
 
@@ -162,12 +161,10 @@ class Usuario{
     }
 
     cargarAsesores(tipo) {
-        console.log(tipo)
         $.get(
             URL + "Buscar/cargarAsesores",
             {tipo},
             res => {
-                console.log(res)
                 try {
                     const data = JSON.parse(res)
                     let body = ''
@@ -175,7 +172,7 @@ class Usuario{
                         body += `
                         <div class="m8 offset-m2 l6 offset-l3">
                             <div class="card-panel grey lighten-5 z-depth-1">
-                                <div class="row valign-wrapper">
+                                <div class="row">
                                     <div class="col s2">
                                         <img src="https://www.filo.news/export/sites/claro/img/2019/09/16/dns2fdcw4aerobb.jpg_429571268.jpg" alt="" class="circle responsive-img">`
                         body += `
@@ -189,7 +186,7 @@ class Usuario{
                                         Correo Electronico: ${ele.usu_correo}<br>
                                         Edad: ${this.calcularEdad(ele.usu_fechanac)}
                                     <br><br>
-                                    <a class="colorbase waves-effect btn-small">Ir a perfil...</a>
+                                    <a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
                                 </span>
                                 </div>
                             </div>
@@ -202,9 +199,39 @@ class Usuario{
                 } catch (err) {
                     console.log(err)
                 }
-                
             }
         )
+    }
+
+    async verPerfilAsesor(documento) {
+        await $.get(
+            URL + "Buscar/obtenerAsesor",
+            {documento},
+            res => {
+                try {
+                    localStorage.setItem('perfilasesor', res)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        )
+        window.location = 'http://localhost/sistema_asesorias/Perfil/asesor'
+    }
+
+    cargarPerfilAsesor() {
+        let data = localStorage.getItem('perfilasesor')
+        try {
+            data = JSON.parse(data)
+            document.getElementById('nombreAsesor').append(`${data.usu_nombres.toUpperCase()} ${data.usu_apellidos.toUpperCase()}`)
+            document.getElementById('ubicacionAsesor').append(data.usu_ubicacion)
+            document.getElementById('correoAsesor').append(data.usu_correo)
+            document.getElementById('fechaAsesor').append(data.usu_fechanac)
+            document.getElementById('experienciaAsesor').append(data.usas_experiencia)
+            document.getElementById('recomendacionesAsesor').append(data.usas_recomendado)
+            document.getElementById('biografiaAsesor').append(data.usas_biografia)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 }

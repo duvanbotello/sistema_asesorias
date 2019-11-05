@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-10-2019 a las 06:46:20
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.3.6
+-- Tiempo de generación: 05-11-2019 a las 03:50:34
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `asesoria`
 --
-CREATE DATABASE IF NOT EXISTS `asesoria` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `asesoria`;
 
 -- --------------------------------------------------------
 
@@ -30,12 +28,12 @@ USE `asesoria`;
 -- Estructura de tabla para la tabla `asesor`
 --
 
-DROP TABLE IF EXISTS `asesor`;
 CREATE TABLE `asesor` (
   `idasesor` int(11) NOT NULL,
   `usuario_usu_documento` varchar(45) NOT NULL,
-  `usas_experiencia` float(8, 2) NOT NULL,
+  `usas_experiencia` float(8,2) NOT NULL,
   `usas_recomendado` bigint(20) NOT NULL,
+  `usas_biografia` varchar(500) NOT NULL DEFAULT 'Soy un excelente docente dedicado a compartir mi conocimiento',
   `usas_fechacreacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,8 +41,9 @@ CREATE TABLE `asesor` (
 -- Volcado de datos para la tabla `asesor`
 --
 
-INSERT INTO `asesor` (`idasesor`, `usuario_usu_documento`) VALUES
-(1, '568221458');
+INSERT INTO `asesor` (`idasesor`, `usuario_usu_documento`, `usas_experiencia`, `usas_recomendado`, `usas_biografia`, `usas_fechacreacion`) VALUES
+(1, '568221458', 0.00, 0, 'Soy un excelente docente dedicado a compartir mi conocimiento', '2019-10-20'),
+(2, '1193443881', 9.34, 4, 'Soy un excelente docente dedicado a compartir mi conocimiento', '2016-06-12');
 
 -- --------------------------------------------------------
 
@@ -52,7 +51,6 @@ INSERT INTO `asesor` (`idasesor`, `usuario_usu_documento`) VALUES
 -- Estructura de tabla para la tabla `asesoria`
 --
 
-DROP TABLE IF EXISTS `asesoria`;
 CREATE TABLE `asesoria` (
   `ase_id` int(11) NOT NULL,
   `ase_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -71,7 +69,6 @@ CREATE TABLE `asesoria` (
 -- Estructura de tabla para la tabla `asesor_asignatura`
 --
 
-DROP TABLE IF EXISTS `asesor_asignatura`;
 CREATE TABLE `asesor_asignatura` (
   `idasesor_asignatura` int(11) NOT NULL,
   `asesor_idasesor` int(11) NOT NULL,
@@ -84,7 +81,6 @@ CREATE TABLE `asesor_asignatura` (
 -- Estructura de tabla para la tabla `asignatura`
 --
 
-DROP TABLE IF EXISTS `asignatura`;
 CREATE TABLE `asignatura` (
   `idasignatura` int(11) NOT NULL,
   `descripcion` varchar(40) DEFAULT NULL
@@ -96,7 +92,6 @@ CREATE TABLE `asignatura` (
 -- Estructura de tabla para la tabla `aula`
 --
 
-DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `aula_id` int(11) NOT NULL,
   `aula_numero` varchar(45) NOT NULL,
@@ -109,7 +104,6 @@ CREATE TABLE `aula` (
 -- Estructura de tabla para la tabla `dia`
 --
 
-DROP TABLE IF EXISTS `dia`;
 CREATE TABLE `dia` (
   `iddia` int(11) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL
@@ -121,7 +115,6 @@ CREATE TABLE `dia` (
 -- Estructura de tabla para la tabla `disponibilidad_asesor`
 --
 
-DROP TABLE IF EXISTS `disponibilidad_asesor`;
 CREATE TABLE `disponibilidad_asesor` (
   `id_disponibilidad` int(11) NOT NULL,
   `dia` int(11) NOT NULL,
@@ -135,7 +128,6 @@ CREATE TABLE `disponibilidad_asesor` (
 -- Estructura de tabla para la tabla `estudiante`
 --
 
-DROP TABLE IF EXISTS `estudiante`;
 CREATE TABLE `estudiante` (
   `idestudiante` int(11) NOT NULL,
   `usuario_usu_documento` varchar(45) NOT NULL
@@ -154,7 +146,6 @@ INSERT INTO `estudiante` (`idestudiante`, `usuario_usu_documento`) VALUES
 -- Estructura de tabla para la tabla `funcionalidad`
 --
 
-DROP TABLE IF EXISTS `funcionalidad`;
 CREATE TABLE `funcionalidad` (
   `fun_id` int(11) NOT NULL,
   `fun_nombre` varchar(45) NOT NULL,
@@ -168,7 +159,6 @@ CREATE TABLE `funcionalidad` (
 -- Estructura de tabla para la tabla `hora`
 --
 
-DROP TABLE IF EXISTS `hora`;
 CREATE TABLE `hora` (
   `idhora` int(11) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL
@@ -180,7 +170,6 @@ CREATE TABLE `hora` (
 -- Estructura de tabla para la tabla `rol`
 --
 
-DROP TABLE IF EXISTS `rol`;
 CREATE TABLE `rol` (
   `rol_id` int(11) NOT NULL,
   `rol_nombre` varchar(45) NOT NULL,
@@ -193,7 +182,6 @@ CREATE TABLE `rol` (
 -- Estructura de tabla para la tabla `rolfuncion`
 --
 
-DROP TABLE IF EXISTS `rolfuncion`;
 CREATE TABLE `rolfuncion` (
   `rolfun_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
@@ -206,7 +194,6 @@ CREATE TABLE `rolfuncion` (
 -- Estructura de tabla para la tabla `rolfuncionalidad`
 --
 
-DROP TABLE IF EXISTS `rolfuncionalidad`;
 CREATE TABLE `rolfuncionalidad` (
   `rol_rol_id` int(11) NOT NULL,
   `funcionalidad_fun_id` int(11) NOT NULL,
@@ -219,7 +206,6 @@ CREATE TABLE `rolfuncionalidad` (
 -- Estructura de tabla para la tabla `telefono`
 --
 
-DROP TABLE IF EXISTS `telefono`;
 CREATE TABLE `telefono` (
   `tele_id` int(11) NOT NULL,
   `tele_numero` varchar(45) NOT NULL,
@@ -241,7 +227,6 @@ INSERT INTO `telefono` (`tele_id`, `tele_numero`, `tele_tipo`, `usuario_usu_docu
 -- Estructura de tabla para la tabla `tipodocumento`
 --
 
-DROP TABLE IF EXISTS `tipodocumento`;
 CREATE TABLE `tipodocumento` (
   `tipodoc_id` int(11) NOT NULL,
   `tipodoc_nombre` varchar(45) NOT NULL,
@@ -263,7 +248,6 @@ INSERT INTO `tipodocumento` (`tipodoc_id`, `tipodoc_nombre`, `tipodoc_descripcio
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `usu_documento` varchar(45) NOT NULL,
   `tipodoc_id` int(11) NOT NULL,
@@ -271,6 +255,7 @@ CREATE TABLE `usuario` (
   `usu_apellidos` varchar(45) NOT NULL,
   `usu_fechanac` date DEFAULT NULL,
   `usu_correo` varchar(80) NOT NULL,
+  `usu_ubicacion` varchar(100) NOT NULL DEFAULT 'Cúcuta',
   `usu_contrasena` varchar(255) NOT NULL,
   `usu_rol_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -279,9 +264,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`usu_documento`, `tipodoc_id`, `usu_nombres`, `usu_apellidos`, `usu_fechanac`, `usu_correo`, `usu_contrasena`, `usu_rol_id`) VALUES
-('1090499082', 1, 'duvan', 'botello', '2019-10-23', 'duvan@gmail.com', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 1),
-('568221458', 1, 'el profe', 'botello', '2019-10-24', 'profe@gmail.com', '$2y$10$i5So.tCwM6nIGJsL2oVbcOkMYU5PCGS8Z5KLwqCIJmvpJf.DHaO0y', 2);
+INSERT INTO `usuario` (`usu_documento`, `tipodoc_id`, `usu_nombres`, `usu_apellidos`, `usu_fechanac`, `usu_correo`, `usu_ubicacion`, `usu_contrasena`, `usu_rol_id`) VALUES
+('1090499082', 1, 'duvan', 'botello', '2019-10-23', 'duvan@gmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 1),
+('1193443881', 1, 'Fredy Ricardo', 'Cortés Ramírez', '1999-07-14', 'fred.cor.14@gmail.com', 'Cúcuta', '2132', 2),
+('568221458', 1, 'el profe', 'botello', '2019-10-24', 'profe@gmail.com', 'Cúcuta', '$2y$10$i5So.tCwM6nIGJsL2oVbcOkMYU5PCGS8Z5KLwqCIJmvpJf.DHaO0y', 2);
 
 -- --------------------------------------------------------
 
@@ -289,7 +275,6 @@ INSERT INTO `usuario` (`usu_documento`, `tipodoc_id`, `usu_nombres`, `usu_apelli
 -- Estructura de tabla para la tabla `usuario_has_rol`
 --
 
-DROP TABLE IF EXISTS `usuario_has_rol`;
 CREATE TABLE `usuario_has_rol` (
   `usuario_usu_id` int(11) NOT NULL,
   `rol_rol_id` int(11) NOT NULL,
@@ -434,7 +419,7 @@ ALTER TABLE `usuario_has_rol`
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `idasesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idasesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `asesoria`
