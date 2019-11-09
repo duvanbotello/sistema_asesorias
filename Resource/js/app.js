@@ -64,6 +64,11 @@ function verPerfilAsesor(document) {
     usuario.verPerfilAsesor(document)
 }
 
+function buscarAsesor() {
+    let filtroAsesor = document.getElementById('buscadorPrincipal').value
+    usuario.cargarAsesores(filtroAsesor)
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
