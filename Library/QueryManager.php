@@ -84,6 +84,21 @@ class QueryManager
         $pdo = null;
     }
 
+    function updateAsesor($documento, $nombres, $apellidos, $ubicacion, $correo, $fecha, $biografia) {
+        try {
+            $query = "UPDATE usuario SET usu_nombres = '$nombres', usu_apellidos = '$apellidos', usu_ubicacion = '$ubicacion', usu_correo = '$correo', usu_fechanac = '$fecha' WHERE usu_documento = '$documento'";
+            $sth = $this->pdo->prepare($query);
+            $sth->execute();
+            $query = "UPDATE asesor SET usas_biografia = '$biografia' WHERE usuario_usu_documento = '$documento'";
+            $sth2 = $this->pdo->prepare($query);
+            $sth2->execute();
+            if($sth && $sth2) return true;
+        } catch (PDOExepcion $e) {
+            return $e->getMessage();
+        }
+        $pdo = null;
+    }
+
     function update($table, $where, $newvalue, $campo,$param)
     {
         try {

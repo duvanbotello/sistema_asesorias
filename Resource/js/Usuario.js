@@ -184,7 +184,8 @@ class Usuario{
                         body += `
                                     <hr>
                                         Correo Electronico: ${ele.usu_correo}<br>
-                                        Edad: ${this.calcularEdad(ele.usu_fechanac)}
+                                        Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
+                                        Biografía: ${ele.usas_biografia}
                                     <br><br>
                                     <a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
                                 </span>
@@ -232,6 +233,55 @@ class Usuario{
         } catch (err) {
             console.log(err)
         }
+    }
+
+    cargarPerfilPropioAsesor() {
+        const dataSession = JSON.parse(localStorage.getItem('asesor'))
+        const documento = dataSession.num_documento
+        $.get(
+            URL + "Buscar/obtenerAsesor",
+            {documento},
+            res => {
+                try {
+                    const data = JSON.parse(res)
+                    document.getElementById('nombreAsesor').value = data.usu_nombres
+                    document.getElementById('apellidoAsesor').value = data.usu_apellidos
+                    document.getElementById('ubicacionAsesor').value = data.usu_ubicacion
+                    document.getElementById('correoAsesor').value = data.usu_correo
+                    document.getElementById('fechaAsesor').value = data.usu_fechanac
+                    document.getElementById('experienciaAsesor').value = data.usas_experiencia
+                    document.getElementById('recomendacionesAsesor').value = data.usas_recomendado
+                    document.getElementById('biografiaAsesor').value = data.usas_biografia
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        )
+    }
+
+    actualizarAsesor(nombres, apellidos, ubicacion, correo, fecha, biografia) {
+        const documento = JSON.parse(localStorage.getItem('asesor')).num_documento
+        $.post(
+            URL + "Asesor/actualizarAsesor",
+            {documento, nombres, apellidos, ubicacion, correo, fecha, biografia},
+            res => {
+                try {
+                    if(res == 1) {
+                        document.getElementById('nombreAsesor').value = nombres
+                        document.getElementById('apellidoAsesor').value = apellidos
+                        document.getElementById('ubicacionAsesor').value = ubicacion
+                        document.getElementById('correoAsesor').value = correo
+                        document.getElementById('fechaAsesor').value = fecha
+                        document.getElementById('biografiaAsesor').value = biografia
+                        M.toast({ html: 'Datos actualizados', classes: 'rounded cyan darken-2' })
+                    } else {
+                        M.toast({ html: res, classes: 'rounded yellow darken-2' })
+                    }
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
     }
 
 }

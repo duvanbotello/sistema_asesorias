@@ -1,0 +1,39 @@
+<nav class="nav-extended">
+    <div class="nav-wrapper db">
+        <a href="http://localhost/sistema_asesorias/" class="brand-logo"><i class="material-icons">book</i>Asesorias</a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="bt hide-on-med-and-down">
+        <li><a href="http://localhost/sistema_asesorias/Index/index">Inicio</a></li>
+        <li><a href="#">Quienes Somos</a></li>
+        <li><a href="http://localhost/sistema_asesorias/Buscar/carga">Encontrar Asesor</a></li>
+        <li><a class='dropdown-button' href='#' data-activates='feature-dropdown' data-belowOrigin="true"
+            data-constrainWidth="false" id="name1"><i class="material-icons bt">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content center-align">
+                    <h5 class="center-align"><B>Tu Perfil</B></h5>
+                    <img src="https://www.filo.news/export/sites/claro/img/2019/09/16/dns2fdcw4aerobb.jpg_429571268.jpg" class="circle responsive-img">    
+                    <input type="text" id="nombreAsesor" placeholder="Nombres">
+                    <input type="text" id="apellidoAsesor" placeholder="Apellidos">
+                    <input type="text" id="ubicacionAsesor" placeholder="Ubicación">
+                    <input type="text" id="correoAsesor" placeholder="Correo Electrónico">
+                    <input type="date" id="fechaAsesor" placeholder="Fecha de Creación">
+                    <input type="text" id="experienciaAsesor" disabled>
+                    <input type="text" id="recomendacionesAsesor" disabled>
+                    <input type="text" id="biografiaAsesor">
+                    <a class="btn success btn-block" onclick="actualizarAsesor()">Actualizar Datos<i class="material-icons right">check_circle</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <h5 class="center-align"><B>Asesorías</B></h5>
+
+        </div>
+    </div>
+</div>

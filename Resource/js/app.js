@@ -69,9 +69,21 @@ function buscarAsesor() {
     usuario.cargarAsesores(filtroAsesor)
 }
 
+function actualizarAsesor() {
+    let nombres = document.getElementById('nombreAsesor')
+    let apellidos = document.getElementById('apellidoAsesor')
+    let ubicacion = document.getElementById('ubicacionAsesor')
+    let correo = document.getElementById('correoAsesor')
+    let fecha = document.getElementById('fechaAsesor')
+    let biografia = document.getElementById('biografiaAsesor')
+    if(validarNombre(nombres) && validarNombre(apellidos) && validarUbicacion(ubicacion) && validarCorreo(correo) && biografia.value != '')
+        usuario.actualizarAsesor(nombres.value, apellidos.value, ubicacion.value, correo.value, fecha.value, biografia.value)
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
     if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
     if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
+    if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
 })
