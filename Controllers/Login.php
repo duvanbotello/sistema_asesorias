@@ -25,8 +25,8 @@ class Login extends Controllers
         } else {
             //redireccionamos el usuario a la vista login
             require VIEWS . DFT . "head.html";
-        $this->view->render($this, "login");
-        require VIEWS . DFT . "footer.html";
+            $this->view->render($this, "login");
+            require VIEWS . DFT . "footer.html";
         }
 
         
