@@ -26,7 +26,7 @@ class Estudiante {
         let usuario = `<div class="card-content center-align">
         <img src="http://localhost/sistema_asesorias/logo.png" alt="" class="z-depth-3 responsive-img">
         <br>
-        <h5 class="center-align" ><B id="NombreEstudiante">`+ dataSession.nombre  + ' ' + dataSession.apellido + `</B></h5>
+        <h5 class="center-align" ><B id="NombreEstudiante">`+ dataSession.nombre + ' ' + dataSession.apellido + `</B></h5>
         <div class="row ">
             <div class="col s1">
                 <i class="material-icons">mail</i>
@@ -52,7 +52,7 @@ class Estudiante {
             </div>
         </div>
 
-        <button class="btn waves-effect waves-light " type="submit" name="action">Editar Perfil
+        <button class="btn waves-effect waves-light " type="submit" onclick="EditarPerfil()" name="action">Editar Perfil
             <i class="material-icons right">send</i>
         </button>
 
@@ -62,23 +62,30 @@ class Estudiante {
 
 
     }
-    MaysPrimera(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+
+    cargarEditarPerfilEstudiante() {
+        const dataSession = JSON.parse(localStorage.getItem('estudiante'))
+
+        document.getElementById('nombreEstu').value = dataSession.nombre;
+        document.getElementById('apellidoEstu').value = dataSession.apellido;
+        document.getElementById('correoEstu').value = dataSession.correo;
+        document.getElementById('fechaEstu').value = dataSession.fecha;
+
     }
-    actualizarAsesor(nombres, apellidos, ubicacion, correo, fecha, biografia) {
-        const documento = JSON.parse(localStorage.getItem('asesor')).num_documento
+
+    actualizarEstudiante(nombres, apellidos, correo, fecha) {
+        const documento = JSON.parse(localStorage.getItem('estudiante')).num_documento
         $.post(
-            URL + "Asesor/actualizarAsesor",
-            { documento, nombres, apellidos, ubicacion, correo, fecha, biografia },
+            URL + "Estudiante/actualizarEstudiante",
+            { documento, nombres, apellidos,  correo, fecha},
             res => {
+                console.log(res)
                 try {
                     if (res == 1) {
-                        document.getElementById('nombreAsesor').value = nombres
-                        document.getElementById('apellidoAsesor').value = apellidos
-                        document.getElementById('ubicacionAsesor').value = ubicacion
-                        document.getElementById('correoAsesor').value = correo
-                        document.getElementById('fechaAsesor').value = fecha
-                        document.getElementById('biografiaAsesor').value = biografia
+                        document.getElementById('nombreEstu').value = nombres
+                        document.getElementById('apellidoEstu').value = apellidos
+                        document.getElementById('correoEstu').value = correo
+                        document.getElementById('fechaEstu').value = fecha
                         M.toast({ html: 'Datos actualizados', classes: 'rounded cyan darken-2' })
                     } else {
                         M.toast({ html: res, classes: 'rounded yellow darken-2' })
