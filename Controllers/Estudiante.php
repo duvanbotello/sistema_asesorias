@@ -15,5 +15,11 @@ class Estudiante extends Controllers {
         }
     }
 
+    public function obtenerEstudiante() {
+        $data = $this->model->obtenerEstudiante($_GET["documento"]);
+        if(is_array($data)) echo json_encode($data);
+        else echo $data;
+    }
+
 
 }

@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 // instanciamos las clases necesarias
 var usuario = new Usuario();
+var estudiante = new Estudiante();
 
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
@@ -86,4 +87,6 @@ $().ready(()=>{
     if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
     if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
     if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
+    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()
+    
 })
