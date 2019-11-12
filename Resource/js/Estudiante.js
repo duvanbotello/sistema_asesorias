@@ -3,24 +3,6 @@ class Estudiante {
 
     constructor() { }
 
-    actualizarPassword(password) {
-        $.post(URL + "Login/actualizarPassword", { password },
-            res => {
-                //console.log(res)
-                if (res == 0) {
-                    M.toast({ html: 'Contraseña actualizada', classes: 'rounded cyan darken-2' })
-                    // $('#formActualizar')[0].reset()
-                } else M.toast({ html: res })
-            }
-        )
-    }
-
-
-
-
-
-
-
     cargarPerfilEstudiante() {
         const dataSession = JSON.parse(localStorage.getItem('estudiante'))
         let usuario = `<div class="card-content center-align">
