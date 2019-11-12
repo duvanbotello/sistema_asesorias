@@ -35,7 +35,7 @@ var actualizarPassword = () => {
     var password2 = window.document.getElementById('password2')
     if (validarContrasena(password) && validarContrasena(password2)) {
         if (password.value === password2.value) usuario.actualizarPassword(password.value)
-        else M.toast({ html: 'Tus contraseñas no coinciden', class: 'rounded cyan darken-2' })
+        else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded cyan darken-2' })
     }
 }
 
@@ -53,17 +53,14 @@ var registrar = () => {
     var password2 = window.document.getElementById('password2')
     if (validarNombre(nombres) && validarNombre(apellidos) && validarTipoDoc(tipodoc) && validarDocumento(documento) && validarTipoTel(tipotel) && validarTelefono(telefono) && validarTipoRol(tiporol) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
         if (password.value === password2.value) usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, tipotel.value, telefono.value, tiporol.value, email.value, password.value)
-        else M.toast({ html: 'Tus contraseñas no coinciden', class: 'rounded cyan darken-2' })
+        else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded cyan darken-2' })
     }
 }
 
-var cargarAsesoresTodos = tipo => usuario.cargarAsesores(tipo)
-
-var cargarAsesoresExperiencia = tipo => usuario.cargarAsesores(tipo)
-
-var cargarAsesoresRecomendados = tipo => usuario.cargarAsesores(tipo)
-
-var cargarAsesoresNuevos = tipo => usuario.cargarAsesores(tipo)
+function cargarAsesores(tipo) {
+    M.toast({ html: `Asesores según ${tipo}`, classes: 'rounded cyan darken-2' })
+    usuario.cargarAsesores(tipo)
+}
 
 function verPerfilAsesor(document) {
     usuario.verPerfilAsesor(document)
