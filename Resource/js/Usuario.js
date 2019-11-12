@@ -114,7 +114,7 @@ class Usuario{
               
                 if (0 < estudiante.num_documento) {
                     //enviamos los datos al elemento con id name1
-                    document.getElementById("name1").innerHTML = estudiante.nombre + " " + estudiante.apellido + " Rol:"+ estudiante.rol;
+                    document.getElementById("name1").innerHTML = estudiante.nombre + " " + estudiante.apellido;
                 }
             }
             if (null != localStorage.getItem("asesor")) {
@@ -123,7 +123,7 @@ class Usuario{
                
                 if (0 < asesor.num_documento) {
                     //enviamos los datos al elemento con id name1
-                    document.getElementById("name1").innerHTML = asesor.nombre + " " + asesor.apellido + " Rol:"+ asesor.rol;
+                    document.getElementById("name1").innerHTML = asesor.nombre + " " + asesor.apellido;
                 }
             }
         }
@@ -152,11 +152,9 @@ class Usuario{
         var cumpleanos = new Date(fecha)
         var edad = hoy.getFullYear() - cumpleanos.getFullYear()
         var m = hoy.getMonth() - cumpleanos.getMonth()
-    
         if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
             edad--
         }
-    
         return edad
     }
 
@@ -168,33 +166,38 @@ class Usuario{
                 try {
                     const data = JSON.parse(res)
                     let body = ''
-                    data.results.forEach(ele => {
-                        body += `
-                        <div class="m8 offset-m2 l6 offset-l3">
-                            <div class="card-panel grey lighten-5 z-depth-1">
-                                <div class="row">
-                                    <div class="col s2">
-                                        <img src="https://www.filo.news/export/sites/claro/img/2019/09/16/dns2fdcw4aerobb.jpg_429571268.jpg" alt="" class="circle responsive-img">`
-                        body += `
-                            </div>
-                                <div class="col s10">
-                                    <span class="black-text">
-                                        ${ele.usu_nombres} ${ele.usu_apellidos}
-                        `
-                        body += `
-                                    <hr>
-                                        Correo Electronico: ${ele.usu_correo}<br>
-                                        Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
-                                        Biografía: ${ele.usas_biografia}
-                                    <br><br>
-                                    <a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
-                                </span>
+                    if(data.results.length > 0) {
+                        data.results.forEach(ele => {
+                            body += `
+                            <div class="m8 offset-m2 l6 offset-l3">
+                                <div class="card-panel grey lighten-5 z-depth-1">
+                                    <div class="row">
+                                        <div class="col s2">
+                                            <img src="https://www.filo.news/export/sites/claro/img/2019/09/16/dns2fdcw4aerobb.jpg_429571268.jpg" alt="" class="circle responsive-img">`
+                            body += `
+                                </div>
+                                    <div class="col s10">
+                                        <span class="black-text">
+                                            ${ele.usu_nombres} ${ele.usu_apellidos}
+                            `
+                            body += `
+                                        <hr>
+                                            Correo Electronico: ${ele.usu_correo}<br>
+                                            Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
+                                            Biografía: ${ele.usas_biografia}
+                                        <br><br>
+                                        <a onclick="" class="secondary-content "><i class="material-icons grey-text text-lighten-1">grade</i></a>
+                                        <a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
+                                    </span>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                        `
-                    })
+                            `
+                        })
+                    } else {
+                        body += `<div><h3 class="center-align">Lo sentimos, no se encontraron asesores...</h3></div>`
+                    }
                     $('#listadeAsesores > div').remove()
                     $('#listadeAsesores').append(body)
                 } catch (err) {
