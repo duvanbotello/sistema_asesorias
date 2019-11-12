@@ -6,11 +6,16 @@ $(document).ready(function(){
 
 // instanciamos las clases necesarias
 var usuario = new Usuario();
+var estudiante = new Estudiante();
 
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     usuario.iniciarSesion(email, password); 
+}
+
+var EditarPerfil = ()=>{
+    window.location = 'http://localhost/sistema_asesorias/Estudiante/EditarPerfil'
 }
 
 var sessionClose = () => {
@@ -80,10 +85,26 @@ function actualizarAsesor() {
         usuario.actualizarAsesor(nombres.value, apellidos.value, ubicacion.value, correo.value, fecha.value, biografia.value)
 }
 
+function actualizarEstudiante() {
+    let nombres = document.getElementById('nombreEstu')
+    let apellidos = document.getElementById('apellidoEstu')
+    let correo = document.getElementById('correoEstu')
+    let fecha = document.getElementById('fechaEstu')
+    if(validarNombre(nombres) && validarNombre(apellidos) && validarCorreo(correo))
+        estudiante.actualizarEstudiante(nombres.value, apellidos.value, correo.value, fecha.value)
+    alert('Inicia Sesion de Nuevo para Validar tus Cambios')
+    sessionClose()
+    window.location = 'http://localhost/sistema_asesorias/Index/destroySession'
+   
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
     if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
     if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
     if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
+    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()
+    if(URLactual == '/sistema_asesorias/Estudiante/EditarPerfil') estudiante.cargarEditarPerfilEstudiante()
+    
 })

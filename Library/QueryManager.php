@@ -99,6 +99,18 @@ class QueryManager
         $pdo = null;
     }
 
+    function updateEstudiante($documento, $nombres, $apellidos, $correo, $fecha) {
+        try {
+            $query = "UPDATE usuario SET usu_nombres = '$nombres', usu_apellidos = '$apellidos', usu_correo = '$correo', usu_fechanac = '$fecha' WHERE usu_documento = '$documento'";
+            $sth = $this->pdo->prepare($query);
+            $sth->execute();  
+            if($sth) return true;
+        } catch (PDOExepcion $e) {
+            return $e->getMessage();
+        }
+        $pdo = null;
+    }
+
     function update($table, $where, $newvalue, $campo,$param)
     {
         try {
