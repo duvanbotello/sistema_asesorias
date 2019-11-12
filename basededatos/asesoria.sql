@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-11-2019 a las 03:52:53
+-- Tiempo de generación: 12-11-2019 a las 07:56:46
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -42,7 +42,8 @@ CREATE TABLE `asesor` (
 
 INSERT INTO `asesor` (`idasesor`, `usuario_usu_documento`, `usas_experiencia`, `usas_biografia`, `usas_fechacreacion`) VALUES
 (1, '568221458', 0.00, 'Soy un excelente docente dedicado a compartir mi conocimient', '2019-10-20'),
-(2, '1193443881', 9.34, 'Doctor en Ciencias Computacionales, Magister en Educación Virtual', '2016-06-12');
+(2, '1193443881', 9.34, 'Doctor en Ciencias Computacionales, Magister en Educación Virtual', '2016-06-12'),
+(3, '123456789', 8.70, 'Soy un excelente docente dedicado a compartir mi conocimiento', '2019-11-11');
 
 -- --------------------------------------------------------
 
@@ -162,6 +163,16 @@ CREATE TABLE `recomendados` (
   `asesor_idasesor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `recomendados`
+--
+
+INSERT INTO `recomendados` (`estudiante_idestudiante`, `asesor_idasesor`) VALUES
+(3, 1),
+(3, 2),
+(4, 1),
+(4, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -228,10 +239,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_documento`, `tipodoc_id`, `usu_nombres`, `usu_apellidos`, `usu_fechanac`, `usu_correo`, `usu_ubicacion`, `usu_contrasena`, `usu_rol_id`) VALUES
-('1090499082', 1, 'duvan', 'botellos', '2019-10-23', 'duvan@gmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 1),
+('1090499082', 1, 'duvan', 'botello', '2019-10-23', 'duvan@gmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 1),
 ('1193443881', 1, 'Fredy Ricardo', 'Cortés Ramírez', '1999-07-14', 'fred.cor.14@gmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 2),
+('123456789', 1, 'Daniel', 'Luna', '1995-02-02', 'danilunaelmejor@hotmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 2),
 ('568221458', 1, 'Ing Jorge', 'Botello', '2019-10-24', 'profe@gmail.com', 'Cúcuta', '$2y$10$i5So.tCwM6nIGJsL2oVbcOkMYU5PCGS8Z5KLwqCIJmvpJf.DHaO0y', 2),
-('89989', 1, 'jhjhvv', 'ffhg', '2019-11-14', 'karolesmes@hotmail.com', 'Cúcuta', '$2y$10$iL9C0zbq2IVSF2Z/AGIH3e1vAD7ETK6nRLpI6QXftHB7dABLgnDvO', 1);
+('89989', 1, 'Karen', 'Gelvez', '2019-11-14', 'karolesmes@hotmail.com', 'Cúcuta', '$2y$10$UKByB3zAxA2GLRJFKbvVneW2Wgh5.bB7lldmSW0de2nT2npKDAmee', 1);
 
 --
 -- Índices para tablas volcadas
