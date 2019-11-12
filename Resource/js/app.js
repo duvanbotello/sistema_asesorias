@@ -92,13 +92,22 @@ function actualizarEstudiante() {
     alert('Inicia Sesion de Nuevo para Validar tus Cambios')
     sessionClose()
     window.location = 'http://localhost/sistema_asesorias/Index/destroySession'
-   
+}
+
+function recomendarAsesor(idAsesor, starId) {
+    const estudiante = JSON.parse(localStorage.getItem('estudiante'))
+    if(estudiante) usuario.recomendarAsesor(estudiante.idEstudiante, idAsesor, starId)
+    else M.toast({ html: `Es necesario que inicies sesión`, classes: 'rounded yellow darken-2' })
 }
 
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
-    if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') usuario.cargarAsesores('Todos')
+    if(URLactual == '/sistema_asesorias/Buscar/carga' || URLactual == '/sistema_asesorias/Index/index' || URLactual == '/sistema_asesorias/') {
+        const estudiante = JSON.parse(localStorage.getItem('estudiante'))
+        if(estudiante) usuario.iniciarSesion(estudiante.correo, localStorage.getItem('user_pass'))
+        usuario.cargarAsesores('Todos')
+    }
     if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
     if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
     if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()

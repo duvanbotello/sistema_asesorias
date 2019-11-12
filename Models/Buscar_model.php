@@ -33,7 +33,27 @@ class Buscar_model extends Conexion {
             'rol' => 2,
             'documento' => $documento
         );
-        return $this->db->select('u.*, a.*', 'usuario u, asesor a', $where, $param)['results'][0];
+        $asesor = $this->db->select('u.*, a.*', 'usuario u, asesor a', $where, $param)['results'][0];
+        $where = 'asesor_idasesor = :idAsesor';
+        $param = array(
+            'idAsesor' => $asesor['idasesor']
+        );
+        $recomendaciones = $this->db->select('count(*) as recom', 'recomendados', $where, $param)['results'][0]['recom'];
+        return array(
+            'idasesor' => $asesor['idasesor'],
+            'usas_experiencia' => $asesor['usas_experiencia'],
+            'usas_biografia' => $asesor['usas_biografia'],
+            'usas_fechacreacion' => $asesor['usas_fechacreacion'],
+            'usu_documento' => $asesor['usu_documento'],
+            'tipodoc_id' => $asesor['tipodoc_id'],
+            'usu_nombres' => $asesor['usu_nombres'],
+            'usu_apellidos' => $asesor['usu_apellidos'],
+            'usu_fechanac' => $asesor['usu_fechanac'],
+            'usu_correo' => $asesor['usu_correo'],
+            'usu_ubicacion' => $asesor['usu_ubicacion'],
+            'usu_rol_id' => $asesor['usu_rol_id'],
+            'usas_recomendado' => $recomendaciones
+        );
     }
 
 }

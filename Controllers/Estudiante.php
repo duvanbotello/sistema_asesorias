@@ -34,5 +34,8 @@ class Estudiante extends Controllers {
         echo $this->model->actualizarEstudiante($_POST['documento'], $_POST['nombres'], $_POST['apellidos'], $_POST['correo'], $_POST['fecha']);
     }
 
+    public function recomendarAsesor() {
+        echo $this->model->recomendarAsesor($_POST['idEstudiante'], $_POST['idAsesor']);
+    }
 
 }

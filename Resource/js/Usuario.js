@@ -43,14 +43,17 @@ class Usuario{
                                 //el metodo localstore nos permite crear elementos para almacenarlos
                                 //en la memoria de nuestro navegador
                                 //con tiene la llave user y almacena la informacion de response
+                                if(!JSON.parse(localStorage.getItem('estudiante'))) window.location.href = URL + "Index/index";
+                                
                                 if(item.rol == 1){
                                     localStorage.setItem("estudiante", response);
+                                    localStorage.setItem("user_pass", password);
                                 }else{
                                     localStorage.setItem("asesor", response);
                                 }
                                 //si el inicio de session es correcto lo enviamos al controlador Principal
                                 //para que abra la vista principal
-                                window.location.href = URL + "Index/index";
+                                
                             } else {
                                 //de lo contrario mostramos un mensaje de error
                                 M.toast({html: 'Contraseña Incorrecta', classes: 'rounded cyan darken-2'})
@@ -71,10 +74,11 @@ class Usuario{
     }
     
     sessionCLose() {
-        localStorage.removeItem("estudiante");
+        localStorage.removeItem("estudiante")
+        localStorage.removeItem("user_pass")
     }
     sessionCLoseAsesor() {
-        localStorage.removeItem("asesor");
+        localStorage.removeItem("asesor")
     }
 
     recuperarPassword(email) {
@@ -158,6 +162,17 @@ class Usuario{
         return edad
     }
 
+    asesorRecomendado(idAsesor, recomendados) {
+        let recomendado = false
+        recomendados = JSON.parse(recomendados)
+        recomendados.forEach(a => {
+            if(a.asesor_idasesor == idAsesor) {
+                recomendado = true
+            }
+        })
+        return recomendado
+    }
+
     cargarAsesores(tipo) {
         $.get(
             URL + "Buscar/cargarAsesores",
@@ -165,7 +180,13 @@ class Usuario{
             res => {
                 try {
                     const data = JSON.parse(res)
+                    const estudiante = JSON.parse(localStorage.getItem('estudiante'))
+                    let recomendados
+                    if(estudiante) {
+                        recomendados = estudiante.recomendados
+                    }
                     let body = ''
+                    let count = 0
                     if(data.results.length > 0) {
                         data.results.forEach(ele => {
                             body += `
@@ -185,15 +206,20 @@ class Usuario{
                                             Correo Electronico: ${ele.usu_correo}<br>
                                             Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
                                             Biografía: ${ele.usas_biografia}
-                                        <br><br>
-                                        <a onclick="" class="secondary-content "><i class="material-icons grey-text text-lighten-1">grade</i></a>
-                                        <a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
+                                        <br><br>`
+                            if(estudiante && this.asesorRecomendado(ele.idasesor, recomendados)) {
+                                body += `<a onclick="recomendarAsesor(${ele.idasesor}, 'star${count}')" class="secondary-content hand"><i id="star${count}" class="material-icons yellow-text text-lighten-1">grade</i></a>`
+                            } else {
+                                body += `<a onclick="recomendarAsesor(${ele.idasesor}, 'star${count}')" class="secondary-content hand"><i id="star${count}" class="material-icons grey-text text-lighten-1">grade</i></a>`
+                            }
+                            body += `<a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
                                     </span>
                                     </div>
                                 </div>
                                 </div>
                             </div>
                             `
+                            count++
                         })
                     } else {
                         body += `<div><h3 class="center-align">Lo sentimos, no se encontraron asesores...</h3></div>`
@@ -280,6 +306,25 @@ class Usuario{
                     } else {
                         M.toast({ html: res, classes: 'rounded yellow darken-2' })
                     }
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
+    }
+
+    recomendarAsesor(idEstudiante, idAsesor, starId) {
+        $.post(
+            URL + "Estudiante/recomendarAsesor",
+            {idEstudiante, idAsesor},
+            res => {
+                try {
+                    if(res == 1) {
+                        document.getElementById(starId).removeAttribute('class')
+                        document.getElementById(starId).setAttribute('class', 'material-icons yellow-text text-lighten-1')
+                        M.toast({ html: 'Asesor Recomendado', classes: 'rounded cyan darken-2' })
+                    }
+                    else M.toast({ html: 'Ya recomendaste este asesor', classes: 'rounded yellow darken-2' })
                 } catch (err) {
                     M.toast({ html: err, classes: 'rounded red darken-2' })
                 }

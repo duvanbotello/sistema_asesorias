@@ -27,20 +27,35 @@ class Index_model extends Conexion
                 //verifico que el password enviado desde la vista se igual al almacenado en la BD
                 if (password_verify($password, $response[0]["usu_contrasena"]) && $response[0]["usu_correo"] == $email) {
                     //si es correcto retorno un array con los datos del usuario.
-                    $data = array(
-                        "num_documento" => $response[0]["usu_documento"],
-                        "nombre" => $response[0]["usu_nombres"],
-                        "apellido" => $response[0]["usu_apellidos"],
-                        "tipo_documento" => $response[0]["tipodoc_id"],
-                        "rol" => $response[0]["usu_rol_id"],
-                        "correo" => $response[0]["usu_correo"],
-                        "fecha" => $response[0]["usu_fechanac"]
-                    );
                     
                     //creo una variable de session y envio los datos del usuario
                     if($response[0]["usu_rol_id"] == 1){
+                        $res = $this->db->select("*", 'estudiante', "usuario_usu_documento = '".$response[0]["usu_documento"]."'", null);
+                        $idEstudiante = $res['results'][0]['idestudiante'];
+                        $res = $this->db->select("asesor_idasesor", 'recomendados', "estudiante_idestudiante = '$idEstudiante'", null);
+                        $recomendados = json_encode($res['results']);
+                        $data = array(
+                            "num_documento" => $response[0]["usu_documento"],
+                            "nombre" => $response[0]["usu_nombres"],
+                            "apellido" => $response[0]["usu_apellidos"],
+                            "tipo_documento" => $response[0]["tipodoc_id"],
+                            "rol" => $response[0]["usu_rol_id"],
+                            "correo" => $response[0]["usu_correo"],
+                            "fecha" => $response[0]["usu_fechanac"],
+                            "idEstudiante" => $idEstudiante,
+                            "recomendados" => $recomendados
+                        );
                         Session::setSession("estudiante", $data);
                     }else{
+                        $data = array(
+                            "num_documento" => $response[0]["usu_documento"],
+                            "nombre" => $response[0]["usu_nombres"],
+                            "apellido" => $response[0]["usu_apellidos"],
+                            "tipo_documento" => $response[0]["tipodoc_id"],
+                            "rol" => $response[0]["usu_rol_id"],
+                            "correo" => $response[0]["usu_correo"],
+                            "fecha" => $response[0]["usu_fechanac"]
+                        );
                         Session::setSession("asesor", $data);
                     }
                     
