@@ -70,6 +70,14 @@
 
                     <div class="row">
                         <div class="input-field col s12">
+                            <i class="material-icons prefix">add_location</i>
+                            <input id="ubicacion" name="ubicacion" type="text">
+                            <label for="ubicacion">Ubicacion</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">perm_phone_msg</i>
                             <select id="tipotel" name="tipotel">
                                 <option selected value="0">Seleccione...</option>
@@ -95,12 +103,40 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">people</i>
-                                    <select id="tiporol" name="tiporol">
+                                    <select id="tiporol" name="tiporol" onchange="ocultarCampos()">
                                         <option selected value="0">Seleccione...</option>
                                         <option value="1">Estudiante</option>
                                         <option value="2">Asesor</option>
                                     </select>
                                     <label>Tipo Rol</label>
+                                </div>
+                            </div>
+
+                            <div id="cont-exp" class="row" style="display: none;">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">person_pin</i>
+                                    <input id="experiencia" name="experiencia" type="number" step="0.01">
+                                    <label for="experiencia">Experiencia</label>
+                                </div>
+                            </div>
+                            <div id="cont-bio" class="row" style="display: none;">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">assignment</i>
+                                    <textarea id="biografia" class="materialize-textarea" data-length="500"></textarea>
+                                    <label for="biografia">Biografia</label>
+                                </div>
+                            </div>
+                            <div id="cont-fcrea" class="row" style="display: none;">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="fechacrea" name="fechacrea" type="date">
+                                    <Script>
+                                        var f = new Date();
+                                        var factual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+                                        var dateControl = document.querySelector('#fechacrea');
+                                        dateControl.value = factual; 
+                                    </Script>
+                                    <label for="fechacrea">Fecha Creacion</label>
                                 </div>
                             </div>
 

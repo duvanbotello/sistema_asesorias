@@ -68,6 +68,40 @@ var validarDocumento = doc => {
     return true
 }
 
+var validarExperiencia = exp => {
+    if (exp.value == '') {
+        M.toast({html: 'Debes ingresar tu experiencia', classes: 'rounded cyan darken-2'})
+        exp.focus()
+        return false
+    } else if (exp.value < 0.00) {
+        M.toast({html: 'Tu experiencia tiene que estar dentro del rango, 0.0 - 10.0', classes: 'rounded cyan darken-2'})
+        exp.focus()
+        return false
+    } else if (exp.value > 10.00) {
+        M.toast({html: 'Tu experiencia tiene que estar dentro del rango, 0.0 - 10.0', classes: 'rounded cyan darken-2'})
+        exp.focus()
+        return false
+    } else if (isNaN(exp.value)) {
+        M.toast({html: 'Tu experiencia solo se mide por números', classes: 'rounded cyan darken-2'})
+        exp.focus()
+        return false
+    }
+    return true
+}
+
+var validarBiografia = bio => {
+    if (bio.value == '') {
+        M.toast({html: 'Debes ingresar tu biografia', classes: 'rounded cyan darken-2'})
+        bio.focus()
+        return false
+    } else if (bio.value.length > 500) {
+        M.toast({html: 'Tu biografia debe contener menos de 501 caracteres', classes: 'rounded cyan darken-2'})
+        bio.focus()
+        return false
+    } 
+    return true
+}
+
 var validarTelefono = phone => {
     if (phone.value == '') {
         M.toast({html: 'Debes ingresar tu telefono', classes: 'rounded cyan darken-2'})

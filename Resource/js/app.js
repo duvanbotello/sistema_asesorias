@@ -1,8 +1,26 @@
 
-// cargar selects del formulario registro
 $(document).ready(function(){
+    // cargar selects del formulario registro
     $('select').formSelect()
+
 })
+
+function ocultarCampos() {
+    elem = document.getElementById("cont-exp");
+    elem2 = document.getElementById("cont-bio");
+    elem3 = document.getElementById("cont-fcrea");
+    select = document.getElementById("tiporol");
+    if (select.value == 2) {
+        elem.style.display = 'block';
+        elem2.style.display = 'block';
+        elem3.style.display = 'block';
+    }else if (select.value == 1 || select.value == 0){
+        elem.style.display = 'none';
+        elem2.style.display = 'none';
+        elem3.style.display = 'none';
+    }
+}
+
 
 // instanciamos las clases necesarias
 var usuario = new Usuario();
@@ -45,14 +63,21 @@ var registrar = () => {
     var fechanac = window.document.getElementById('fechanac')
     var tipodoc = window.document.getElementById('tipodoc')
     var documento = window.document.getElementById('documento')
+    var ubicacion = window.document.getElementById('ubicacion')
     var tipotel = window.document.getElementById('tipotel')
     var telefono = window.document.getElementById('numtel')
     var tiporol = window.document.getElementById('tiporol')
+    var experiencia = window.document.getElementById('experiencia')
+    var biografia = window.document.getElementById('biografia')
+    var fechacrea = window.document.getElementById('fechacrea')
     var email = window.document.getElementById('email')
     var password = window.document.getElementById('password')
     var password2 = window.document.getElementById('password2')
-    if (validarNombre(nombres) && validarNombre(apellidos) && validarTipoDoc(tipodoc) && validarDocumento(documento) && validarTipoTel(tipotel) && validarTelefono(telefono) && validarTipoRol(tiporol) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
-        if (password.value === password2.value) usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, tipotel.value, telefono.value, tiporol.value, email.value, password.value)
+    
+    if (tiporol.value == 2) validarExperiencia(experiencia) && validarBiografia(biografia)
+    
+    if (validarNombre(nombres) && validarNombre(apellidos) && validarTipoDoc(tipodoc) && validarDocumento(documento) && validarUbicacion(ubicacion) && validarTipoTel(tipotel) && validarTelefono(telefono) && validarTipoRol(tiporol) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
+        if (password.value === password2.value) usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value)
         else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded cyan darken-2' })
     }
 }
