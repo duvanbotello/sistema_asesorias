@@ -21,7 +21,7 @@ class Login_model extends Conexion
 
             if (0 != count($response)) {
 
-                $nombre = $response[0]["usu_nombres"];
+                $nombre = $response[2]["usu_nombres"];
                 $url = "http://localhost/sistema_asesorias/Login/cargaActualizar";
 
                 // primero hay que incluir la clase phpmailer para poder instanciar un objeto de la misma
@@ -45,12 +45,12 @@ class Login_model extends Conexion
                 $mail->SMTPAuth = true;
 
                 //Le decimos cual es nuestro nombre de usuario(correo) y password
-                $mail->Username = "@gmail.com"; 
+                $mail->Username = "daniel.dal029@gmail.com"; 
                 $mail->Password = "";
 
                 //Indicamos cual es nuestra dirección de correo y el nombre que 
                 //queremos que vea el usuario que lee nuestro correo
-                $mail->setFrom("@gmail.com", "Admin Alejandro Luna - Asesorias");
+                $mail->setFrom("daniel.dal029@gmail.com", "Admin Alejandro Luna - Asesorias");
 
                  //el valor por defecto 10 de Timeout es un poco escaso, por tanto lo pongo a 30 
                 $mail->Timeout = 30;

@@ -56,8 +56,8 @@ CREATE TABLE `asesoria` (
   `ase_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `aula_id` int(11) NOT NULL,
   `cali_id` int(11) NOT NULL,
-  `idestudiante` int(11) NOT NULL,
-  `idasesor` int(11) NOT NULL,
+  `idestudiante` int(11) UNSIGNED NOT NULL,
+  `idasesor` int(11) UNSIGNED NOT NULL,
   `asignatura_idasignatura` int(11) NOT NULL,
   `calificacion` int(11) DEFAULT NULL,
   `observacion` varchar(300) DEFAULT NULL
@@ -71,7 +71,7 @@ CREATE TABLE `asesoria` (
 
 CREATE TABLE `asesor_asignatura` (
   `idasesor_asignatura` int(11) NOT NULL,
-  `asesor_idasesor` int(11) NOT NULL,
+  `asesor_idasesor` int(11) UNSIGNED NOT NULL,
   `asignatura_idasignatura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,7 +119,7 @@ CREATE TABLE `disponibilidad_asesor` (
   `id_disponibilidad` int(11) NOT NULL,
   `dia` int(11) NOT NULL,
   `hora` int(11) NOT NULL,
-  `asesor` int(11) NOT NULL
+  `asesor` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -159,8 +159,8 @@ CREATE TABLE `hora` (
 --
 
 CREATE TABLE `recomendados` (
-  `estudiante_idestudiante` int(11) NOT NULL,
-  `asesor_idasesor` int(11) NOT NULL
+  `estudiante_idestudiante` int(11) UNSIGNED NOT NULL,
+  `asesor_idasesor` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -253,6 +253,7 @@ INSERT INTO `usuario` (`usu_documento`, `tipodoc_id`, `usu_nombres`, `usu_apelli
 -- Indices de la tabla `asesor`
 --
 ALTER TABLE `asesor`
+  CHANGE `idasesor` `idasesor` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   ADD PRIMARY KEY (`idasesor`,`usuario_usu_documento`),
   ADD UNIQUE KEY `idasesor_UNIQUE` (`idasesor`),
   ADD KEY `fk_usu_documento` (`usuario_usu_documento`);
@@ -307,6 +308,7 @@ ALTER TABLE `disponibilidad_asesor`
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
+  CHANGE `idestudiante` `idestudiante` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   ADD PRIMARY KEY (`idestudiante`),
   ADD UNIQUE KEY `idestudiante_UNIQUE` (`idestudiante`),
   ADD KEY `fk_estudiante_usuario1_idx` (`usuario_usu_documento`);
@@ -329,6 +331,7 @@ ALTER TABLE `recomendados`
 -- Indices de la tabla `telefono`
 --
 ALTER TABLE `telefono`
+  CHANGE `tele_id` `tele_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   ADD PRIMARY KEY (`tele_id`),
   ADD KEY `fk_telefono_usuario1_idx` (`usuario_usu_documento`);
 
