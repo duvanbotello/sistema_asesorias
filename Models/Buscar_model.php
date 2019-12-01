@@ -8,23 +8,31 @@ class Buscar_model extends Conexion {
     }
 
     public function cargarAsesores($tipo) {
+        $attr = "u.*, a.*";
+        $tables = "usuario u, asesor a";
+        $param = array('rol' => 2);
+        $where = "";
         if($tipo == 'Todos') {
-            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento';
-            $param = array('rol' => 2);
+            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by u.usu_nombres, u.usu_apellidos desc';
         } else if($tipo == 'Experiencia') {
-            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by usas_experiencia desc';
-            $param = array('rol' => 2);
+            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by a.usas_experiencia desc';
         } else if($tipo == 'Recomendados') {
+            $attr .= ", (select count(*) from recomendados where asesor_idasesor = a.idasesor) as usas_recomendado";
             $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by usas_recomendado desc';
-            $param = array('rol' => 2);
         } else if($tipo == 'Nuevos') {
-            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by usas_fechacreacion desc';
-            $param = array('rol' => 2);
+            $where = 'usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento order by a.usas_fechacreacion desc';
         } else {
             $where = "usu_rol_id = :rol and a.usuario_usu_documento = u.usu_documento and ( u.usu_nombres like '%$tipo%' or u.usu_apellidos like '%$tipo%')";
-            $param = array('rol' => 2);
         }
-        return $this->db->select('u.*, a.*', 'usuario u, asesor a', $where, $param);
+        $data = $this->db->select($attr, $tables, $where, $param)['results'];
+
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $document = $data[$i]['usu_documento'];
+            $res = $this->db->select("a.asig_nombre", "asesor_asignatura aa, asignatura a", "a.asig_id = aa.asignatura_asig_id and aa.asesor_usuario_usu_documento = '$document'", null)['results'];
+            $data[$i]['asignaturas'] = $res;
+        }
+
+        return array('results' => $data);
     }
 
     public function obtenerAsesor($documento) {

@@ -143,6 +143,8 @@ class Usuario{
                 if (res == 0) {
                     M.toast({ html: 'Usuario registrado satisfactoriamente', classes: 'rounded cyan darken-2' })
                     $('#formRegistro')[0].reset()
+                    $('#cont-asignaturas > div').remove()
+                    localStorage.clear()
                 } else M.toast({ html: res, classes: 'rounded red darken-2' })
             }
         )
@@ -196,20 +198,26 @@ class Usuario{
                                 </div>
                                     <div class="col s10">
                                         <span class="black-text">
-                                            ${ele.usu_nombres} ${ele.usu_apellidos}
+                                            <b>${ele.usu_nombres} ${ele.usu_apellidos}</b>
                             `
                             body += `
                                         <hr>
                                             Correo Electronico: ${ele.usu_correo}<br>
                                             Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
                                             Biografía: ${ele.usas_biografia}
-                                        <br><br>`
+                                        <p>Te puedo asesor en las siguientes <b>asignaturas</b>: </p>
+                                        <div class="row">
+                                    `
+                            ele.asignaturas.forEach(a => {
+                                body += `   <div class="cyan darken-2 contenedorAsignaturasMain col s3"><p>${a.asig_nombre}</p></div>`
+                            });
+                            body += `   </div>`
                             if(estudiante && this.asesorRecomendado(ele.idasesor, recomendados)) {
                                 body += `<a onclick="recomendarAsesor(${ele.idasesor}, 'star${count}')" class="secondary-content hand"><i id="star${count}" class="material-icons yellow-text text-lighten-1">grade</i></a>`
                             } else {
                                 body += `<a onclick="recomendarAsesor(${ele.idasesor}, 'star${count}')" class="secondary-content hand"><i id="star${count}" class="material-icons grey-text text-lighten-1">grade</i></a>`
                             }
-                            body += `<a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ir a perfil</a>
+                            body += `<a onclick="verPerfilAsesor(${ele.usu_documento})" class="colorbase waves-effect btn-small">Ver perfil</a>
                                     </span>
                                     </div>
                                 </div>
@@ -224,6 +232,7 @@ class Usuario{
                     $('#listadeAsesores > div').remove()
                     $('#listadeAsesores').append(body)
                 } catch (err) {
+                    console.log(err)
                     M.toast({ html: err, classes: 'rounded red darken-2' })
                 }
             }
