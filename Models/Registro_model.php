@@ -6,7 +6,7 @@ class Registro_model extends Conexion
         parent::__construct();
     }
 
-    public function registrar($nombres, $apellidos, $fechanac, $tipodoc, $documento, $ubicacion, $tipotel, $telefono, $tiporol, $experiencia, $biografia, $fechacrea, $email, $password)
+    public function registrar($nombres, $apellidos, $fechanac, $tipodoc, $documento, $ubicacion, $tipotel, $telefono, $tiporol, $experiencia, $biografia, $fechacrea, $email, $password, $asignaturas)
     {
 
         $where = 'usu_documento = :documento or usu_correo = :email';
@@ -57,18 +57,16 @@ class Registro_model extends Conexion
                             'fechacrea' => $fechacrea
                         );
                         $data = $this->db->insert('asesor', $value, $param);
+
+                        $asignaturas = json_decode($asignaturas);
+                        foreach ($asignaturas->asignaturas as $key => $value) {
+                            $this->db->insert('asesor_asignatura', " VALUES ('$documento', $value)", null);
+                        }
                     }
                     return 0;
-                } else {
-                   
-                    return $data2;
-                }
-            } else {
-                return 1;
-            }
-        } else {
-            return $response;
-        }
+                } else return $data2;
+            } else return 1;
+        } else return $response;
     }
 
     function obtenerAsignaturas() {

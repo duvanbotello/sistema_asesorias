@@ -134,16 +134,16 @@ class Usuario{
     }
 
     
-    registrar(nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password) {
+    registrar(nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password, asignaturas) {
         $.post(
             URL + "Registro/registrar",
-            {nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password},
+            {nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password, asignaturas},
             res => {
                 console.log(res)
                 if (res == 0) {
                     M.toast({ html: 'Usuario registrado satisfactoriamente', classes: 'rounded cyan darken-2' })
                     $('#formRegistro')[0].reset()
-                } else M.toast({ html: res })
+                } else M.toast({ html: res, classes: 'rounded red darken-2' })
             }
         )
     }
@@ -224,7 +224,7 @@ class Usuario{
                     $('#listadeAsesores > div').remove()
                     $('#listadeAsesores').append(body)
                 } catch (err) {
-                    console.log(err)
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
                 }
             }
         )
@@ -238,7 +238,7 @@ class Usuario{
                 try {
                     localStorage.setItem('perfilasesor', res)
                 } catch (err) {
-                    console.log(err)
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
                 }
             }
         )
@@ -257,7 +257,7 @@ class Usuario{
             document.getElementById('recomendacionesAsesor').append(data.usas_recomendado)
             document.getElementById('biografiaAsesor').append(data.usas_biografia)
         } catch (err) {
-            console.log(err)
+            M.toast({ html: err, classes: 'rounded red darken-2' })
         }
     }
 
@@ -279,7 +279,7 @@ class Usuario{
                     document.getElementById('recomendacionesAsesor').value = data.usas_recomendado
                     document.getElementById('biografiaAsesor').value = data.usas_biografia
                 } catch (err) {
-                    console.log(err)
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
                 }
             }
         )

@@ -62,6 +62,7 @@ var actualizarPassword = () => {
 }
 
 var registrar = () => {
+    let asignaturas = localStorage.getItem('asignaturas')
     var nombres = window.document.getElementById('nombres')
     var apellidos = window.document.getElementById('apellidos')
     var fechanac = window.document.getElementById('fechanac')
@@ -78,12 +79,27 @@ var registrar = () => {
     var password = window.document.getElementById('password')
     var password2 = window.document.getElementById('password2')
     
-    if (tiporol.value == 2) validarExperiencia(experiencia) && validarBiografia(biografia)
-    
-    if (validarNombre(nombres) && validarNombre(apellidos) && validarTipoDoc(tipodoc) && validarDocumento(documento) && validarUbicacion(ubicacion) && validarTipoTel(tipotel) && validarTelefono(telefono) && validarTipoRol(tiporol) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2) && confirm('¿deseas registrar esta persona?')) {
-        if (password.value === password2.value) usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value)
-        else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded cyan darken-2' })
+    if (validarNombre(nombres) && validarNombre(apellidos) && validarTipoDoc(tipodoc) && validarDocumento(documento) && validarUbicacion(ubicacion) && validarTipoTel(tipotel) && validarTelefono(telefono) && validarTipoRol(tiporol) && validarCorreo(email) && validarContrasena(password) && validarContrasena(password2)) {
+        if (password.value === password2.value) {
+            if (tiporol.value == 2 && validarExperiencia(experiencia) && validarBiografia(biografia)) {
+                if(JSON.parse(asignaturas).asignaturas.length > 0) {
+                    asignaturas = createJsonIdOnly(JSON.parse(asignaturas).asignaturas)
+                    usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value, JSON.stringify({ asignaturas }))
+                } else M.toast({ html: 'Debes tener por lo menos una materia para asesorar', classes: 'rounded yellow darken-2' })
+            } else {
+                usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value, "")
+            }
+        }
+        else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded yellow darken-2' })
     }
+}
+
+function createJsonIdOnly(array) {
+    let newArray = []
+    array.forEach(ele => {
+        newArray.push(ele.id)
+    });
+    return newArray
 }
 
 function cargarAsesores(tipo) { 
@@ -143,7 +159,6 @@ function cargarAsignaturas() {
                 }
                 $("#combo_asignaturas").append(options)
                 M.FormSelect.init(document.querySelectorAll('select'));//Importante para la renderización de los select
-                console.log($("#combo_asignaturas"))
             } catch (err) {
                 M.toast({ html: err, classes: 'rounded red darken-2' })
             }
