@@ -16,4 +16,10 @@
             else echo $data;
         }
 
+        function obtenerAsignaturas() {
+            $data = $this->model->obtenerAsignaturas();
+            if (is_array($data)) echo json_encode($data);
+            else echo $data;
+        }
+
     }

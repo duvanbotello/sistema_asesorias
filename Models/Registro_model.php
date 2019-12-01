@@ -71,4 +71,8 @@ class Registro_model extends Conexion
         }
     }
 
+    function obtenerAsignaturas() {
+        return $this->db->select('*', 'asignatura', null, null);
+    }
+
 }

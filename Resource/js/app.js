@@ -9,15 +9,19 @@ function ocultarCampos() {
     elem = document.getElementById("cont-exp");
     elem2 = document.getElementById("cont-bio");
     elem3 = document.getElementById("cont-fcrea");
+    elem4 = document.getElementById("cont-asi");
     select = document.getElementById("tiporol");
     if (select.value == 2) {
+        cargarAsignaturas();
         elem.style.display = 'block';
         elem2.style.display = 'block';
         elem3.style.display = 'block';
+        elem4.style.display = 'block';
     }else if (select.value == 1 || select.value == 0){
         elem.style.display = 'none';
         elem2.style.display = 'none';
         elem3.style.display = 'none';
+        elem4.style.display = 'none';
     }
 }
 
@@ -82,7 +86,7 @@ var registrar = () => {
     }
 }
 
-function cargarAsesores(tipo) {
+function cargarAsesores(tipo) { 
     M.toast({ html: `Asesores según ${tipo}`, classes: 'rounded cyan darken-2' })
     usuario.cargarAsesores(tipo)
 }
@@ -125,6 +129,74 @@ function recomendarAsesor(idAsesor, starId) {
     else M.toast({ html: `Es necesario que inicies sesión`, classes: 'rounded yellow darken-2' })
 }
 
+function cargarAsignaturas() {
+    $.get(
+        URL + "Registro/obtenerAsignaturas",
+        {},
+        res => {
+            try {
+                let data = JSON.parse(res)
+                data = data.results
+                let options = `<option selected value="0">Selecciona tu asignatura...</option>`
+                for (let i = 0; i < data.length; i++) {
+                    options += `<option value="${data[i].asig_id}">${data[i].asig_nombre}</option>`
+                }
+                $("#combo_asignaturas").append(options)
+                M.FormSelect.init(document.querySelectorAll('select'));//Importante para la renderización de los select
+                console.log($("#combo_asignaturas"))
+            } catch (err) {
+                M.toast({ html: err, classes: 'rounded red darken-2' })
+            }
+        }
+    )
+}
+
+function agregarAsignatura() {
+    try {
+        const asig = $('#combo_asignaturas option:selected')
+        const obj = {
+            id: asig.val(),
+            nombre: asig.text()
+        }
+        if(asig.val() == 0) M.toast({ html: "Debes seleccionar una asignatura", classes: 'rounded yellow darken-2' })
+        else {
+            if(localStorage.getItem('asignaturas')) {
+                let asignaturasCookie = localStorage.getItem('asignaturas')
+                let asignaturas = (JSON.parse(asignaturasCookie)).asignaturas
+                const repeat = asignaturas.filter(a => a.id === asig.val())
+                if(repeat.length > 0) {
+                    M.toast({ html: "Ya seleccionaste esta asignatura", classes: 'rounded yellow darken-2' })
+                } else {
+                    asignaturas.push(obj)
+                    localStorage.setItem('asignaturas', JSON.stringify({ asignaturas }))
+                    M.toast({ html: "Asignatura agregada", classes: 'rounded cyan darken-2' })
+                    $('#cont-asignaturas').append(`<div id="divasig${asig.val()}" onclick="removerAsignatura('${asig.val()}', 'divasig${asig.val()}')" class="cyan darken-2 contenedorAsignaturas hand col s4"><p>${asig.text()}</p></div>`)
+                }
+            } else {
+                asignaturas = [obj]
+                localStorage.setItem('asignaturas', JSON.stringify({ asignaturas }))
+                M.toast({ html: "Asignatura agregada", classes: 'rounded cyan darken-2' })
+                $('#cont-asignaturas').append(`<div id="divasig${asig.val()}" onclick="removerAsignatura('${asig.val()}', 'divasig${asig.val()}')" class="cyan darken-2 contenedorAsignaturas hand col s4"><p>${asig.text()}</p></div>`)
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+function removerAsignatura(id, divid) {
+    try {
+        let asignaturasCookie = localStorage.getItem('asignaturas')
+        let asignaturasAntiguas = (JSON.parse(asignaturasCookie)).asignaturas
+        const asignaturas = asignaturasAntiguas.filter(a => a.id !== id)
+        localStorage.setItem('asignaturas', JSON.stringify({ asignaturas }))
+        M.toast({ html: "Asignatura removida", classes: 'rounded red darken-2' })
+        $(`#${divid}`).remove()   
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
@@ -137,5 +209,6 @@ $().ready(()=>{
     if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
     if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()
     if(URLactual == '/sistema_asesorias/Estudiante/EditarPerfil') estudiante.cargarEditarPerfilEstudiante()
-    
+    if(URLactual == '/sistema_asesorias/Registro/carga') localStorage.clear()
+
 })
