@@ -41,12 +41,12 @@ class Buscar_model extends Conexion {
             'rol' => 2,
             'documento' => $documento
         );
-        $asesor = $this->db->select('u.*, a.*', 'usuario u, asesor a', $where, $param)['results'][0];
-        $where = 'asesor_idasesor = :idAsesor';
+        $asesor = $this->db->select('u.*, a.*, (select count(*) from recomendados where asesor_idasesor = a.idasesor) as usas_recomendado', 'usuario u, asesor a', $where, $param)['results'][0];
+        $where = "a.asig_id = aa.asignatura_asig_id and aa.asesor_usuario_usu_documento = :documento";
         $param = array(
-            'idAsesor' => $asesor['idasesor']
+            'documento' => $asesor['usu_documento']
         );
-        $recomendaciones = $this->db->select('count(*) as recom', 'recomendados', $where, $param)['results'][0]['recom'];
+        $asignaturas = $this->db->select("a.asig_nombre", "asesor_asignatura aa, asignatura a", $where, $param)['results'];
         return array(
             'idasesor' => $asesor['idasesor'],
             'usas_experiencia' => $asesor['usas_experiencia'],
@@ -60,7 +60,8 @@ class Buscar_model extends Conexion {
             'usu_correo' => $asesor['usu_correo'],
             'usu_ubicacion' => $asesor['usu_ubicacion'],
             'usu_rol_id' => $asesor['usu_rol_id'],
-            'usas_recomendado' => $recomendaciones
+            'usas_recomendado' => $asesor['usas_recomendado'],
+            'asignaturas' => $asignaturas
         );
     }
 

@@ -205,7 +205,7 @@ class Usuario{
                                             Correo Electronico: ${ele.usu_correo}<br>
                                             Edad: ${this.calcularEdad(ele.usu_fechanac)}<br>
                                             Biografía: ${ele.usas_biografia}
-                                        <p>Te puedo asesor en las siguientes <b>asignaturas</b>: </p>
+                                        <p>Te puedo asesorar en las siguientes <b>asignaturas</b>: </p>
                                         <div class="row">
                                     `
                             ele.asignaturas.forEach(a => {
@@ -265,6 +265,11 @@ class Usuario{
             document.getElementById('experienciaAsesor').append(data.usas_experiencia)
             document.getElementById('recomendacionesAsesor').append(data.usas_recomendado)
             document.getElementById('biografiaAsesor').append(data.usas_biografia)
+            let body = ""
+            data.asignaturas.forEach(a => {
+                body += `<div class="cyan darken-2 contenedorAsignaturas col s4"><p>${a.asig_nombre}</p></div>`
+            });
+            $('#container-asignaturas').append(body)
         } catch (err) {
             M.toast({ html: err, classes: 'rounded red darken-2' })
         }
