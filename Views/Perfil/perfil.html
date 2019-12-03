@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col s12 fixed">
-            <div class="card">
+            <div id="perfil-asesor" class="card">
                 <div class="card-content">
                     <p class="center-align"><B>PERFIL DEL ASESOR</B></p>
                     <br>
@@ -27,6 +27,7 @@
                                 <img src="https://www.filo.news/export/sites/claro/img/2019/09/16/dns2fdcw4aerobb.jpg_429571268.jpg" alt="" class="circle responsive-img">    
                                 <p class="center-align"><B id="nombreAsesor"></B></p>
                                 <br>
+                                <a onclick="openFormAsesoria()" class="btn">Agendar Asesoría</a>
                             </div>
                             <div class="col s8">
                                 <p class="center-align"><B>Ubicación</B></p>
@@ -58,6 +59,62 @@
 
                         </div>
                     </div>
+
+                    <div id="cuenta-card" class="card" style="display: none;">
+                        
+                            <div class="card-content">
+    
+                                <span class="card-title center cyan-text text-darken-1"><b>Agendar Asesoría</b></span>
+                                <div class="row"></div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">date_range</i>
+                                        <input id="fechaagenda" name="fechaagenda" type="date">
+                                        <Script>
+                                            var f = new Date();
+                                            var factual = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+                                            var dateControl = document.querySelector('#fechaagenda');
+                                            dateControl.value = factual; 
+                                        </Script>
+                                        <label for="fechaagenda">Fecha de Asesoría</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <div class="row">
+                                            <div class="input-field col s5">
+                                                <input id="horaagenda" name="horaagenda" type="number" min="0" max="23">
+                                                <label for="horaagenda">Hora</label>
+                                            </div>
+                                            <div class="input-field col s2">
+                                                <input disabled placeholder="--------" type="text">
+                                            </div>
+                                            <div class="input-field col s5">
+                                                <input id="minagenda" name="minagenda" type="number" min="0" max="59">
+                                                <label for="minagenda">Minutos</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">book</i>
+                                        <select id="combo_asignaturasasesor" name="combo_asignaturasasesor">
+    
+                                        </select>
+                                        <label for="combo_asignaturasasesor">Asignatura</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row"></div>
+                                <div class="row center">
+                                    <a class="btn success" onclick="agendarAsesoria()">
+                                        Agendar<i class="material-icons right">check_circle</i></a>
+                                </div>
+                            </div>
+                        
+                    </div>
+
                 </div>
                 
             </div>

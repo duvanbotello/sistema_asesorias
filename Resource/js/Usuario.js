@@ -270,6 +270,12 @@ class Usuario{
                 body += `<div class="cyan darken-2 contenedorAsignaturas col s4"><p>${a.asig_nombre}</p></div>`
             });
             $('#container-asignaturas').append(body)
+            let options = `<option selected value="0">Selecciona tu asignatura...</option>`
+            for (let i = 0; i < data.asignaturas.length; i++) {
+                options += `<option value="${data.asignaturas[i].asig_id}">${data.asignaturas[i].asig_nombre}</option>`
+            }
+            $("#combo_asignaturasasesor").append(options)
+            M.FormSelect.init(document.querySelectorAll('select'));//Importante para la renderización de los select
         } catch (err) {
             M.toast({ html: err, classes: 'rounded red darken-2' })
         }
@@ -336,6 +342,24 @@ class Usuario{
                         M.toast({ html: 'Asesor Recomendado', classes: 'rounded cyan darken-2' })
                     }
                     else M.toast({ html: 'Ya recomendaste este asesor', classes: 'rounded yellow darken-2' })
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
+    }
+
+    agendarAsesoria(fecha, duracion, idasignatura, idasesor, idestudiante) {
+        $.post(
+            URL + "Asesoria/registrar",
+            {fecha, duracion, idasignatura, idasesor, idestudiante},
+            res => {
+                try {
+                    if(res == 1) {
+                        $('#cuenta-card').css("display", "none")
+                        location.href = "#perfil-asesor"
+                        M.toast({ html: 'Asesoría agendada con éxito', classes: 'rounded cyan darken-2' })
+                    } else M.toast({ html: res, classes: 'rounded red darken-2' })
                 } catch (err) {
                     M.toast({ html: err, classes: 'rounded red darken-2' })
                 }

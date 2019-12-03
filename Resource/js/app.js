@@ -212,6 +212,24 @@ function removerAsignatura(id, divid) {
     }
 }
 
+function openFormAsesoria() {
+    $('#cuenta-card').css("display", "block")
+    location.href = "#cuenta-card"
+}
+
+function agendarAsesoria() {
+    if(localStorage.getItem('estudiante')) {
+        const idestudiante = JSON.parse(localStorage.getItem('estudiante')).idEstudiante
+        const idasesor = JSON.parse(localStorage.getItem('perfilasesor')).idasesor
+        const idasignatura = document.getElementById('combo_asignaturasasesor').value
+        const fecha = document.getElementById('fechaagenda').value
+        const duracion = document.getElementById('horaagenda').value
+        if(idestudiante && idasesor && idasignatura && fecha && duracion)
+            usuario.agendarAsesoria(fecha, duracion, idasignatura, idasesor, idestudiante)
+        else M.toast({ html: "Faltan Datos", classes: 'rounded yellow darken-2' })
+    } else M.toast({ html: "Debes iniciar sesión", classes: 'rounded yellow darken-2' })
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);

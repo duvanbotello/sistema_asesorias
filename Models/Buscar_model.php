@@ -46,7 +46,7 @@ class Buscar_model extends Conexion {
         $param = array(
             'documento' => $asesor['usu_documento']
         );
-        $asignaturas = $this->db->select("a.asig_nombre", "asesor_asignatura aa, asignatura a", $where, $param)['results'];
+        $asignaturas = $this->db->select("a.asig_id, a.asig_nombre", "asesor_asignatura aa, asignatura a", $where, $param)['results'];
         return array(
             'idasesor' => $asesor['idasesor'],
             'usas_experiencia' => $asesor['usas_experiencia'],

@@ -1,5 +1,4 @@
 <?php
-
     class Asesor extends Controllers {
         
         public function __construct() {
