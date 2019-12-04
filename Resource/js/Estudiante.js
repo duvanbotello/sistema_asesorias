@@ -107,26 +107,34 @@ class Estudiante {
                     let data = JSON.parse(res)
                     let body = ""
                     data.results.forEach(ele => {
-                        body += `<li class="collection-item avatar">
+                        body += `<li id="cont-ase-${ele.ase_id}" class="collection-item avatar">
                                     <i class="material-icons circle">view_agenda</i>
                                     <p><b>Asesor :</b> ${ele.usu_nombres}</p>
                                     <p><b>Fecha :</b> ${ele.ase_fecha.split(' ')[0]}</p>
                                     <p><b>Hora :</b> ${ele.ase_horainicial} - ${ele.ase_horafinal}</p>
                                     <p><b>Asignatura:</b> ${ele.asig_nombre}</p>`
                         if(ele.ase_estado == 0) {
-                            body += `<p ><b>Estado:</b> Pendiente</p>`
+                            body += `<p><b>Estado:</b> Pendiente</p>`
                         } else if(ele.ase_estado == 1) {
                             body += `<p><b>Estado:</b> Aceptada</p>`
+                        } else if(ele.ase_estado == -1) {
+                            body += `<p><b>Estado:</b> Rechazada</p>`
                         }
                         body += `   <br>
-                                    <div class="row">
-                                        <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                    <div class="row">`
+                        if(ele.ase_estado == 0) {
+                            body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
-                                        <button class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría
+                                        <button onclick="eliminarAsesoria(${ele.ase_id}, 'cont-ase-${ele.ase_id}')" class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría
                                             <i class="material-icons right">close</i>
-                                        </button>
-                                    </div>
+                                        </button>`
+                        } else if(ele.ase_estado == 1 || ele.ase_estado == -1) {
+                            body += `   <button class="col s12 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                            <i class="material-icons right">send</i>
+                                        </button>`
+                        }
+                        body += `   </div>
                                 </li>`
                     });
                     $('#listaAsesorias').append(body)

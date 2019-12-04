@@ -19,4 +19,10 @@
             echo $this->model->actualizarAsesor($_POST['documento'], $_POST['nombres'], $_POST['apellidos'], $_POST['ubicacion'], $_POST['correo'], $_POST['fecha'], $_POST['biografia']);
         }
 
+        public function obtenerAsesorias() {
+            $data = $this->model->obtenerAsesorias($_GET["idAsesor"]);
+            if(is_array($data)) echo json_encode($data);
+            else echo $data;
+        }
+
     }

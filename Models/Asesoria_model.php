@@ -19,5 +19,21 @@
             if($res === true) return 1;
             else return $res;
         }
+        
+        function eliminar($idasesoria) {
+            $where = "ase_id = :idasesoria";
+            $params = array("idasesoria" => $idasesoria);
+            $res = $this->db->delete("asesoria", $where, $params);
+            if($res === true) return 1;
+            else return $res;
+        }
+
+        function actualizar($idasesoria, $estado) {
+            $where = "ase_id = :idasesoria";
+            $params = array("idasesoria" => $idasesoria);
+            $res = $this->db->update("asesoria", "ase_estado", $estado, $where, $params);
+            if($res === true) return 1;
+            else return $res;
+        }
 
     }

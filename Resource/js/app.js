@@ -29,6 +29,7 @@ function ocultarCampos() {
 // instanciamos las clases necesarias
 var usuario = new Usuario();
 var estudiante = new Estudiante();
+var asesor = new Asesor();
 
 var iniciarSesion = ()=>{
     var email = document.getElementById("email").value;
@@ -235,6 +236,44 @@ function agendarAsesoria() {
     } else M.toast({ html: "Debes iniciar sesión", classes: 'rounded yellow darken-2' })
 }
 
+function eliminarAsesoria(idasesoria, divid) {
+    $.post(
+        URL + "Asesoria/eliminar",
+        { idasesoria },
+        res => {
+            try {
+                if(res == 1) {
+                    $(`#${divid}`).remove()
+                    M.toast({ html: "Asesoria cancelada correctamente", classes: 'rounded cyan darken-2' })    
+                } else M.toast({ html: res, classes: 'rounded red darken-2' })
+            } catch (err) {
+                M.toast({ html: err, classes: 'rounded red darken-2' })
+            }
+        }
+    )
+}
+
+function actualizarAsesoria(idasesoria, estado) {
+    $.post(
+        URL + "Asesoria/actualizar",
+        { idasesoria, estado },
+        res => {
+            try {
+                if(res == 1) {
+                    $(`#listaAsesorias > li`).remove()
+                    asesor.cargarAsesoriasAgendadas()
+                    let msj = ""
+                    if(estado == 1) { msj = "Asesoria aceptada correctamente" }
+                    else { msj = "Asesoria rechazada correctamente" }
+                    M.toast({ html: msj, classes: 'rounded cyan darken-2' })
+                } else M.toast({ html: res, classes: 'rounded red darken-2' })
+            } catch (err) {
+                M.toast({ html: err, classes: 'rounded red darken-2' })
+            }
+        }
+    )
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
@@ -249,5 +288,6 @@ $().ready(()=>{
     if(URLactual == '/sistema_asesorias/Estudiante/EditarPerfil') estudiante.cargarEditarPerfilEstudiante()
     if(URLactual == '/sistema_asesorias/Registro/carga') localStorage.clear()
     if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarAsesoriasAgendadas()
+    if(URLactual == '/sistema_asesorias/Asesor/miperfil') asesor.cargarAsesoriasAgendadas()
 
 })

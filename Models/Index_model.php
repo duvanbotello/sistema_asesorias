@@ -47,6 +47,7 @@ class Index_model extends Conexion
                         );
                         Session::setSession("estudiante", $data);
                     }else{
+                        $res = $this->db->select("idasesor", 'asesor', "usuario_usu_documento = :document", array('document' => $response[0]['usu_documento']));
                         $data = array(
                             "num_documento" => $response[0]["usu_documento"],
                             "nombre" => $response[0]["usu_nombres"],
@@ -54,7 +55,8 @@ class Index_model extends Conexion
                             "tipo_documento" => $response[0]["tipodoc_id"],
                             "rol" => $response[0]["usu_rol_id"],
                             "correo" => $response[0]["usu_correo"],
-                            "fecha" => $response[0]["usu_fechanac"]
+                            "fecha" => $response[0]["usu_fechanac"],
+                            "idasesor" => $res['results'][0]['idasesor']
                         );
                         Session::setSession("asesor", $data);
                     }
