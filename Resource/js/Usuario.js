@@ -28,7 +28,6 @@ class Usuario{
                     //y optenemos respuesta atraves de response.
 
                     $.post(URL + "Index/userLogin", { email, password }, (response) => {
-                        console.log(response)
                         try {
 
                             //paso los datos del vector response que envian desde el servidor
@@ -342,24 +341,6 @@ class Usuario{
                         M.toast({ html: 'Asesor Recomendado', classes: 'rounded cyan darken-2' })
                     }
                     else M.toast({ html: 'Ya recomendaste este asesor', classes: 'rounded yellow darken-2' })
-                } catch (err) {
-                    M.toast({ html: err, classes: 'rounded red darken-2' })
-                }
-            }
-        )
-    }
-
-    agendarAsesoria(fecha, duracion, idasignatura, idasesor, idestudiante) {
-        $.post(
-            URL + "Asesoria/registrar",
-            {fecha, duracion, idasignatura, idasesor, idestudiante},
-            res => {
-                try {
-                    if(res == 1) {
-                        $('#cuenta-card').css("display", "none")
-                        location.href = "#perfil-asesor"
-                        M.toast({ html: 'Asesoría agendada con éxito', classes: 'rounded cyan darken-2' })
-                    } else M.toast({ html: res, classes: 'rounded red darken-2' })
                 } catch (err) {
                     M.toast({ html: err, classes: 'rounded red darken-2' })
                 }

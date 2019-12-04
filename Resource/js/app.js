@@ -223,10 +223,15 @@ function agendarAsesoria() {
         const idasesor = JSON.parse(localStorage.getItem('perfilasesor')).idasesor
         const idasignatura = document.getElementById('combo_asignaturasasesor').value
         const fecha = document.getElementById('fechaagenda').value
-        const duracion = document.getElementById('horaagenda').value
-        if(idestudiante && idasesor && idasignatura && fecha && duracion)
-            usuario.agendarAsesoria(fecha, duracion, idasignatura, idasesor, idestudiante)
-        else M.toast({ html: "Faltan Datos", classes: 'rounded yellow darken-2' })
+        const horainicial = document.getElementById('horainicial').value
+        const horafinal = document.getElementById('horafinal').value
+        if(idestudiante && idasesor && idasignatura != 0 && fecha && horainicial && horafinal) {
+            let f = new Date(fecha)
+            let fechaelegida = new Date(f.setDate(f.getDate() + 1))
+            fechaelegida = new Date(fechaelegida.setHours(0))
+            if(fechaelegida > new Date()) estudiante.agendarAsesoria(fecha, horainicial, horafinal, idasignatura, idasesor, idestudiante)
+            else M.toast({ html: "Solo puedes agendar con un día de anticipación", classes: 'rounded yellow darken-2' })
+        } else M.toast({ html: "Debes suministrar todos los datos", classes: 'rounded yellow darken-2' })
     } else M.toast({ html: "Debes iniciar sesión", classes: 'rounded yellow darken-2' })
 }
 
@@ -243,5 +248,6 @@ $().ready(()=>{
     if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()
     if(URLactual == '/sistema_asesorias/Estudiante/EditarPerfil') estudiante.cargarEditarPerfilEstudiante()
     if(URLactual == '/sistema_asesorias/Registro/carga') localStorage.clear()
+    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarAsesoriasAgendadas()
 
 })

@@ -38,4 +38,10 @@ class Estudiante extends Controllers {
         echo $this->model->recomendarAsesor($_POST['idEstudiante'], $_POST['idAsesor']);
     }
 
+    public function obtenerAsesorias() {
+        $data = $this->model->obtenerAsesorias($_GET["idEstudiante"]);
+        if(is_array($data)) echo json_encode($data);
+        else echo $data;
+    }
+
 }

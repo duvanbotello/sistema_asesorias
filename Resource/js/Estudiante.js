@@ -79,4 +79,62 @@ class Estudiante {
         )
     }
 
+    agendarAsesoria(fecha, horainicial, horafinal, idasignatura, idasesor, idestudiante) {
+        $.post(
+            URL + "Asesoria/registrar",
+            {fecha, horainicial, horafinal, idasignatura, idasesor, idestudiante},
+            res => {
+                try {
+                    if(res == 1) {
+                        $('#cuenta-card').css("display", "none")
+                        location.href = "#perfil-asesor"
+                        M.toast({ html: 'Asesoría agendada con éxito', classes: 'rounded cyan darken-2' })
+                    } else M.toast({ html: res, classes: 'rounded red darken-2' })
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
+    }
+
+    cargarAsesoriasAgendadas() {
+        const idEstudiante = JSON.parse(localStorage.getItem('estudiante')).idEstudiante
+        $.get(
+            URL + "Estudiante/obtenerAsesorias",
+            { idEstudiante },
+            res => {
+                try {
+                    let data = JSON.parse(res)
+                    let body = ""
+                    data.results.forEach(ele => {
+                        body += `<li class="collection-item avatar">
+                                    <i class="material-icons circle">view_agenda</i>
+                                    <p><b>Asesor :</b> ${ele.usu_nombres}</p>
+                                    <p><b>Fecha :</b> ${ele.ase_fecha.split(' ')[0]}</p>
+                                    <p><b>Hora :</b> ${ele.ase_horainicial} - ${ele.ase_horafinal}</p>
+                                    <p><b>Asignatura:</b> ${ele.asig_nombre}</p>`
+                        if(ele.ase_estado == 0) {
+                            body += `<p ><b>Estado:</b> Pendiente</p>`
+                        } else if(ele.ase_estado == 1) {
+                            body += `<p><b>Estado:</b> Aceptada</p>`
+                        }
+                        body += `   <br>
+                                    <div class="row">
+                                        <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                        <button class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría
+                                            <i class="material-icons right">close</i>
+                                        </button>
+                                    </div>
+                                </li>`
+                    });
+                    $('#listaAsesorias').append(body)
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
+    }
+
 }

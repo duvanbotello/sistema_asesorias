@@ -60,7 +60,8 @@
                         </div>
                     </div>
 
-                    <div id="cuenta-card" class="card" style="display: none;">
+                    <div class="container">
+                        <div id="cuenta-card" class="card" style="display: none;">
                         
                             <div class="card-content">
     
@@ -83,21 +84,19 @@
 
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <div class="row">
-                                            <div class="input-field col s5">
-                                                <input id="horaagenda" name="horaagenda" type="number" min="0" max="23">
-                                                <label for="horaagenda">Hora</label>
-                                            </div>
-                                            <div class="input-field col s2">
-                                                <input disabled placeholder="--------" type="text">
-                                            </div>
-                                            <div class="input-field col s5">
-                                                <input id="minagenda" name="minagenda" type="number" min="0" max="59">
-                                                <label for="minagenda">Minutos</label>
-                                            </div>
-                                        </div>
+                                        <i class="material-icons prefix">access_time</i>
+                                        <input id="horainicial" name="horainicial" type="time" min="04:00" max="22:00">
+                                        <label for="horainicial">Hora Inicial</label>
                                     </div>
                                     <div class="input-field col s6">
+                                        <i class="material-icons prefix">access_time</i>
+                                        <input id="horafinal" name="horafinal" type="time" min="04:00" max="22:00">
+                                        <label for="horafinal">Hora Final</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="input-field col s12">
                                         <i class="material-icons prefix">book</i>
                                         <select id="combo_asignaturasasesor" name="combo_asignaturasasesor">
     
@@ -105,14 +104,14 @@
                                         <label for="combo_asignaturasasesor">Asignatura</label>
                                     </div>
                                 </div>
-    
-                                <div class="row"></div>
+
                                 <div class="row center">
                                     <a class="btn success" onclick="agendarAsesoria()">
                                         Agendar<i class="material-icons right">check_circle</i></a>
                                 </div>
                             </div>
-                        
+                            
+                        </div>
                     </div>
 
                 </div>

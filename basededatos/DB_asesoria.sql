@@ -102,8 +102,9 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `asesoria` (
   `ase_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `ase_fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ase_duracion` INT NOT NULL,
+  `ase_fecha` TIMESTAMP NOT NULL,
+  `ase_horainicial` VARCHAR(10) NOT NULL,
+  `ase_horafinal` VARCHAR(10) NOT NULL,
   `ase_calificacion` FLOAT(10,2) NULL,
   `ase_observacion` VARCHAR(300) NULL,
   `ase_estado` VARCHAR(1) NOT NULL DEFAULT 0,

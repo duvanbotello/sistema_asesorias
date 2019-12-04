@@ -5,11 +5,12 @@
             parent::__construct();
         }
 
-        function registrar($fecha, $duracion, $idasignatura, $idasesor, $idestudiante) {
-            $values = "(ase_fecha, ase_duracion, asignatura_idasignatura, idasesor, idestudiante) VALUES (:fecha, :duracion, :idasignatura, :idasesor, :idestudiante)";
+        function registrar($fecha, $horainicial, $horafinal, $idasignatura, $idasesor, $idestudiante) {
+            $values = "(ase_fecha, ase_horainicial, ase_horafinal, asignatura_idasignatura, idasesor, idestudiante) VALUES (:fecha, :horainicial, :horafinal, :idasignatura, :idasesor, :idestudiante)";
             $params = array(
                 'fecha' => $fecha,
-                'duracion' => $duracion,
+                'horainicial' => $horainicial,
+                'horafinal' => $horafinal,
                 'idasignatura' => $idasignatura,
                 'idasesor' => $idasesor,
                 'idestudiante' => $idestudiante
