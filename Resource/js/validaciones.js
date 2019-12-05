@@ -73,12 +73,8 @@ var validarExperiencia = exp => {
         M.toast({html: 'Debes ingresar tu experiencia', classes: 'rounded cyan darken-2'})
         exp.focus()
         return false
-    } else if (exp.value < 0.00) {
-        M.toast({html: 'Tu experiencia tiene que estar dentro del rango, 0.0 - 10.0', classes: 'rounded cyan darken-2'})
-        exp.focus()
-        return false
-    } else if (exp.value > 10.00) {
-        M.toast({html: 'Tu experiencia tiene que estar dentro del rango, 0.0 - 10.0', classes: 'rounded cyan darken-2'})
+    } else if (exp.value < 0 || exp.value > 50) {
+        M.toast({html: 'Tu experiencia tiene que estar dentro del rango, 0 - 50', classes: 'rounded cyan darken-2'})
         exp.focus()
         return false
     } else if (isNaN(exp.value)) {

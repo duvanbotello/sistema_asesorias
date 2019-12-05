@@ -8,20 +8,17 @@ $(document).ready(function(){
 function ocultarCampos() {
     elem = document.getElementById("cont-exp");
     elem2 = document.getElementById("cont-bio");
-    elem3 = document.getElementById("cont-fcrea");
-    elem4 = document.getElementById("cont-asi");
+    elem3 = document.getElementById("cont-asi");
     select = document.getElementById("tiporol");
     if (select.value == 2) {
         cargarAsignaturas();
         elem.style.display = 'block';
         elem2.style.display = 'block';
         elem3.style.display = 'block';
-        elem4.style.display = 'block';
     }else if (select.value == 1 || select.value == 0){
         elem.style.display = 'none';
         elem2.style.display = 'none';
         elem3.style.display = 'none';
-        elem4.style.display = 'none';
     }
 }
 
@@ -75,7 +72,6 @@ var registrar = () => {
     var tiporol = window.document.getElementById('tiporol')
     var experiencia = window.document.getElementById('experiencia')
     var biografia = window.document.getElementById('biografia')
-    var fechacrea = window.document.getElementById('fechacrea')
     var email = window.document.getElementById('email')
     var password = window.document.getElementById('password')
     var password2 = window.document.getElementById('password2')
@@ -85,10 +81,10 @@ var registrar = () => {
             if (tiporol.value == 2 && validarExperiencia(experiencia) && validarBiografia(biografia)) {
                 if(JSON.parse(asignaturas).asignaturas.length > 0) {
                     asignaturas = createJsonIdOnly(JSON.parse(asignaturas).asignaturas)
-                    usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value, JSON.stringify({ asignaturas }))
+                    usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, email.value, password.value, JSON.stringify({ asignaturas }))
                 } else M.toast({ html: 'Debes tener por lo menos una materia para asesorar', classes: 'rounded yellow darken-2' })
-            } else {
-                usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, fechacrea.value, email.value, password.value, "")
+            } else if(tiporol.value == 1){
+                usuario.registrar(nombres.value, apellidos.value, fechanac.value, tipodoc.value, documento.value, ubicacion.value, tipotel.value, telefono.value, tiporol.value, experiencia.value, biografia.value, email.value, password.value, "")
             }
         }
         else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded yellow darken-2' })

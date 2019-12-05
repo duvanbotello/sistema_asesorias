@@ -133,10 +133,10 @@ class Usuario{
     }
 
     
-    registrar(nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password, asignaturas) {
+    registrar(nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, email, password, asignaturas) {
         $.post(
             URL + "Registro/registrar",
-            {nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, fechacrea, email, password, asignaturas},
+            {nombres, apellidos, fechanac, tipodoc, documento, ubicacion, tipotel, telefono, tiporol, experiencia, biografia, email, password, asignaturas},
             res => {
                 console.log(res)
                 if (res == 0) {

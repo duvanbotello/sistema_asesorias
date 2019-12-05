@@ -6,7 +6,7 @@ class Registro_model extends Conexion
         parent::__construct();
     }
 
-    public function registrar($nombres, $apellidos, $fechanac, $tipodoc, $documento, $ubicacion, $tipotel, $telefono, $tiporol, $experiencia, $biografia, $fechacrea, $email, $password, $asignaturas)
+    public function registrar($nombres, $apellidos, $fechanac, $tipodoc, $documento, $ubicacion, $tipotel, $telefono, $tiporol, $experiencia, $biografia, $email, $password, $asignaturas)
     {
 
         $where = 'usu_documento = :documento or usu_correo = :email';
@@ -49,12 +49,11 @@ class Registro_model extends Conexion
                         );
                         $data = $this->db->insert('estudiante', $value, $param);
                     } else if ($tiporol == 2) {
-                        $value = '(usuario_usu_documento, usas_experiencia, usas_biografia, usas_fechacreacion) VALUES (:usuario_usu_documento, :experiencia, :biografia, :fechacrea)';
+                        $value = '(usuario_usu_documento, usas_experiencia, usas_biografia) VALUES (:usuario_usu_documento, :experiencia, :biografia)';
                         $param = array(
                             'usuario_usu_documento' => $documento,
                             'experiencia' => $experiencia,
-                            'biografia' => $biografia,
-                            'fechacrea' => $fechacrea
+                            'biografia' => $biografia
                         );
                         $data = $this->db->insert('asesor', $value, $param);
 
