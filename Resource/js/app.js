@@ -214,6 +214,20 @@ function openFormAsesoria() {
     location.href = "#cuenta-card"
 }
 
+function formatDate(date) {
+    let d = date,
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
 function agendarAsesoria() {
     if(localStorage.getItem('estudiante')) {
         const idestudiante = JSON.parse(localStorage.getItem('estudiante')).idEstudiante
@@ -226,7 +240,7 @@ function agendarAsesoria() {
             let f = new Date(fecha)
             let fechaelegida = new Date(f.setDate(f.getDate() + 1))
             fechaelegida = new Date(fechaelegida.setHours(0))
-            if(fechaelegida > new Date()) estudiante.agendarAsesoria(fecha, horainicial, horafinal, idasignatura, idasesor, idestudiante)
+            if(fechaelegida > new Date()) estudiante.agendarAsesoria(this.formatDate(fechaelegida), horainicial, horafinal, idasignatura, idasesor, idestudiante)
             else M.toast({ html: "Solo puedes agendar con un día de anticipación", classes: 'rounded yellow darken-2' })
         } else M.toast({ html: "Debes suministrar todos los datos", classes: 'rounded yellow darken-2' })
     } else M.toast({ html: "Debes iniciar sesión", classes: 'rounded yellow darken-2' })
@@ -268,6 +282,19 @@ function actualizarAsesoria(idasesoria, estado) {
             }
         }
     )
+}
+
+function verCalificacion(divid, idasesoria) {
+    $(`#${divid}`).css('display', 'block')
+}
+
+function ocultarCalificacion(divid) {
+    $(`#${divid}`).css('display', 'none')
+}
+
+function calificarAsesoria(divid, idasesoria) {
+    ocultarCalificacion(divid)
+    M.toast({ html: "Funcionalidad en construcción", classes: 'rounded green light-2' })
 }
 
 $().ready(()=>{
