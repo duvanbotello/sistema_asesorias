@@ -176,7 +176,7 @@ class Estudiante {
                             body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
-                                        <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}', ${ele.ase_id})" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación
+                                        <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}')" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación
                                             <i class="material-icons right">remove_red_eye</i>
                                         </button>`
                         } else if(ele.ase_estado == -1) {
@@ -193,17 +193,17 @@ class Estudiante {
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <i class="material-icons prefix">create</i>
-                                                <input id="cal-ase-${ele.ase_id}" type="number" min="0" max="10">
+                                                <input id="cal-ase-${ele.ase_id}" type="number" min="0" max="10" value="${ele.ase_calificacion}">
                                                 <label for="cal-ase-${ele.ase_id}">Calificación</label>
                                             </div>
                                             <div class="input-field col s6">
                                                 <i class="material-icons prefix">create</i>
-                                                <textarea id="obs-ase-${ele.ase_id}" class="materialize-textarea" data-length="300"></textarea>
+                                                <textarea id="obs-ase-${ele.ase_id}" class="materialize-textarea" data-length="300">${ele.ase_observacion}</textarea>
                                                 <label for="obs-ase-${ele.ase_id}">Observaciones</label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button onclick="calificarAsesoria('cont-cal-ase-${ele.ase_id}', ${ele.ase_id})" class="col s12 green light-2 btn-small" type="submit" name="action">Calificar Asesoría
+                                            <button onclick="calificarAsesoria('cont-cal-ase-${ele.ase_id}', 'cal-ase-${ele.ase_id}', 'obs-ase-${ele.ase_id}', ${ele.ase_id})" class="col s12 green light-2 btn-small" type="submit" name="action">Calificar Asesoría
                                                 <i class="material-icons right">create</i>
                                             </button>
                                         </div>

@@ -123,6 +123,23 @@ class QueryManager
         $pdo = null;
     }
 
+    function updateAll($table, $fields, $newValues, $where, $param) {
+        try {
+            $query = "UPDATE " . $table . " SET ";
+            for ($i = 0; $i < count($fields); $i++) {
+                $query .= $fields[$i] . " = '" . $newValues[$i] . "'";
+                if((count($fields) - 1) != $i) $query .= ", ";
+            }
+            $query .= " WHERE " . $where;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($param);
+            return true;
+        } catch (PDOExepcion $e) {
+            return $e->getMessage();
+        }
+        $pdo = null;
+    }
+
     function delete($table, $where, $params) {
         try {
             $query = "DELETE FROM " . $table . " WHERE " . $where;

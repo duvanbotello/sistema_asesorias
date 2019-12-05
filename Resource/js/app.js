@@ -284,7 +284,7 @@ function actualizarAsesoria(idasesoria, estado) {
     )
 }
 
-function verCalificacion(divid, idasesoria) {
+function verCalificacion(divid) {
     $(`#${divid}`).css('display', 'block')
 }
 
@@ -292,9 +292,28 @@ function ocultarCalificacion(divid) {
     $(`#${divid}`).css('display', 'none')
 }
 
-function calificarAsesoria(divid, idasesoria) {
-    ocultarCalificacion(divid)
-    M.toast({ html: "Funcionalidad en construcción", classes: 'rounded green light-2' })
+function calificarAsesoria(divid, calid, obsid, idasesoria) {
+    let calificacion = document.getElementById(calid)
+    let observacion = document.getElementById(obsid)
+    if(validarCalificacion(calificacion) && validarObservacion(observacion)) {
+        calificacion = calificacion.value
+        observacion = observacion.value
+        $.post(
+            URL + "Asesoria/calificar",
+            { idasesoria, calificacion, observacion },
+            res => {
+                console.log(res)
+                try {
+                    if(res == 1) {
+                        ocultarCalificacion(divid)
+                        M.toast({ html: "Calificación agregada correctamente", classes: 'rounded cyan darken-2' })
+                    } else M.toast({ html: res, classes: 'rounded red darken-2' })
+                } catch (err) {
+                    M.toast({ html: err, classes: 'rounded red darken-2' })
+                }
+            }
+        )
+    }
 }
 
 $().ready(()=>{

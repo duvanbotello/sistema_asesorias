@@ -36,4 +36,13 @@
             else return $res;
         }
 
+        function calificar($idasesoria, $calificacion, $observacion) {
+            $where = "ase_id = $idasesoria";
+            $fields = array("ase_calificacion", "ase_observacion");
+            $newValues = array($calificacion, $observacion);
+            $res = $this->db->updateAll("asesoria", $fields, $newValues, $where, null);
+            if($res === true) return 1;
+            else return $res;
+        }
+
     }

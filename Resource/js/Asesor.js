@@ -92,7 +92,7 @@ class Asesor {
                             body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
-                                        <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}', ${ele.ase_id})" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación
+                                        <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}')" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación
                                             <i class="material-icons right">remove_red_eye</i>
                                         </button>`
                         }
@@ -102,13 +102,11 @@ class Asesor {
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <i class="material-icons prefix">create</i>
-                                                <input disabled id="cal-ase-${ele.ase_id}" type="number" min="0" max="10">
-                                                <label for="cal-ase-${ele.ase_id}">Calificación</label>
+                                                <input disabled id="cal-ase-${ele.ase_id}" type="number" min="0" max="10" value="${ele.ase_calificacion}">
                                             </div>
                                             <div class="input-field col s6">
                                                 <i class="material-icons prefix">create</i>
-                                                <textarea disabled id="obs-ase-${ele.ase_id}" class="materialize-textarea" data-length="300"></textarea>
-                                                <label for="obs-ase-${ele.ase_id}">Observaciones</label>
+                                                <textarea disabled id="obs-ase-${ele.ase_id}" class="materialize-textarea" data-length="300">${ele.ase_observacion}</textarea>
                                             </div>
                                         </div>
                                         <div class="row">

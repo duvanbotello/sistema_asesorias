@@ -17,4 +17,8 @@
             echo $this->model->actualizar($_POST['idasesoria'], $_POST['estado']);
         }
 
+        function calificar() {
+            echo $this->model->calificar($_POST['idasesoria'], $_POST['calificacion'], $_POST['observacion']);
+        }
+
     }
