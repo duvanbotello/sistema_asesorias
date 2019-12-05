@@ -39,7 +39,7 @@ class Asesor {
                             body += `   <br>
                                         <div class="row">`
                             if(ele.ase_estado == 0) {
-                                body += `   <button class="col s4 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s4 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                                 <i class="material-icons right">send</i>
                                             </button>
                                             <button onclick="actualizarAsesoria(${ele.ase_id}, '1')"  class="col s4 green light-2 btn-small" type="submit" name="action">Aceptar Asesoría
@@ -49,14 +49,14 @@ class Asesor {
                                                 <i class="material-icons right">close</i>
                                             </button>`
                             } else if(ele.ase_estado == 1) {
-                                body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                                 <i class="material-icons right">send</i>
                                             </button>
                                             <button onclick="actualizarAsesoria(${ele.ase_id}, '-1')" class="col s6 red darken-2 btn-small" type="submit" name="action">Rechazar Asesoría
                                                 <i class="material-icons right">close</i>
                                             </button>`
                             } else if(ele.ase_estado == -1) {
-                                body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                                 <i class="material-icons right">send</i>
                                             </button>
                                             <button onclick="actualizarAsesoria(${ele.ase_id}, '1')"  class="col s6 green light-2 btn-small" type="submit" name="action">Aceptar Asesoría
@@ -85,11 +85,11 @@ class Asesor {
                         body += `   <br>
                                     <div class="row">`
                         if(ele.ase_estado == 0 || ele.ase_estado == -1) {
-                            body += `   <button class="col s12 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                            body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s12 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>`
                         } else if(ele.ase_estado == 1) {
-                            body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                            body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
                                         <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}')" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación

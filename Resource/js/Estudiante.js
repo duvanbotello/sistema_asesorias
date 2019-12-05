@@ -133,14 +133,14 @@ class Estudiante {
                             body += `   <br>
                                         <div class="row">`
                             if(ele.ase_estado == 0) {
-                                body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                                 <i class="material-icons right">send</i>
                                             </button>
                                             <button onclick="eliminarAsesoria(${ele.ase_id}, 'cont-ase-${ele.ase_id}')" class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría
                                                 <i class="material-icons right">close</i>
                                             </button>`
                             } else if(ele.ase_estado == 1 || ele.ase_estado == -1) {
-                                body += `   <button class="col s12 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                                body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s12 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                                 <i class="material-icons right">send</i>
                                             </button>`
                             }
@@ -166,21 +166,21 @@ class Estudiante {
                         body += `   <br>
                                     <div class="row">`
                         if(ele.ase_estado == 0) {
-                            body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                            body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
                                         <button onclick="eliminarAsesoria(${ele.ase_id}, 'cont-ase-${ele.ase_id}')" class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría
                                             <i class="material-icons right">close</i>
                                         </button>`
                         } else if(ele.ase_estado == 1) {
-                            body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                            body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
                                         <button onclick="verCalificacion('cont-cal-ase-${ele.ase_id}')" class="col s6 green light-2 btn-small" type="submit" name="action">Ver Calificación
                                             <i class="material-icons right">remove_red_eye</i>
                                         </button>`
                         } else if(ele.ase_estado == -1) {
-                            body += `   <button class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
+                            body += `   <button onclick="verComentariosAsesoria(${ele.ase_id})" class="col s6 cyan darken-2 btn-small" type="submit" name="action">Detalle Asesoría
                                             <i class="material-icons right">send</i>
                                         </button>
                                         <button onclick="eliminarAsesoria(${ele.ase_id}, 'cont-ase-${ele.ase_id}')" class="col s6 red darken-2 btn-small" type="submit" name="action">Cancelar Asesoría

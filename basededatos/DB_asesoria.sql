@@ -177,7 +177,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `comentario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `comentario` (
-  `come_id` INT(11) NOT NULL,
+  `come_id` INT(11) NOT NULL AUTO_INCREMENT,
   `asesoria_ase_id` INT(11) NOT NULL,
   `usuario_usu_documento` VARCHAR(45) NOT NULL,
   `come_contenido` VARCHAR(500) NOT NULL,
@@ -190,7 +190,8 @@ CREATE TABLE IF NOT EXISTS `comentario` (
     REFERENCES `asesoria` (`ase_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------

@@ -246,22 +246,6 @@ function agendarAsesoria() {
     } else M.toast({ html: "Debes iniciar sesión", classes: 'rounded yellow darken-2' })
 }
 
-function eliminarAsesoria(idasesoria, divid) {
-    $.post(
-        URL + "Asesoria/eliminar",
-        { idasesoria },
-        res => {
-            try {
-                if(res == 1) {
-                    $(`#${divid}`).remove()
-                    M.toast({ html: "Asesoria cancelada correctamente", classes: 'rounded cyan darken-2' })    
-                } else M.toast({ html: res, classes: 'rounded red darken-2' })
-            } catch (err) {
-                M.toast({ html: err, classes: 'rounded red darken-2' })
-            }
-        }
-    )
-}
 
 function actualizarAsesoria(idasesoria, estado) {
     $.post(
@@ -316,6 +300,73 @@ function calificarAsesoria(divid, calid, obsid, idasesoria) {
     }
 }
 
+function verComentariosAsesoria(idAsesoria) {
+    $.get(
+        URL + "Comentario/obtener",
+        { idAsesoria },
+        res => {
+            try {
+                localStorage.setItem('comentarios', res)
+                window.location = 'http://localhost/sistema_asesorias/Comentario/comentario'
+            } catch (err) {
+                M.toast({ html: err, classes: 'rounded red darken-2' })
+            }
+        }
+    )
+}
+
+function imprimirComentarios() {
+    try {
+        if(localStorage.getItem('comentarios')) {
+            let comentarios = JSON.parse(localStorage.getItem('comentarios')).results
+            let body = ""
+            comentarios.forEach(come => {
+                body += `<p style="margin-bottom: 10px;" class="grey light-1 contenedorComentarios">
+                            <b>${come.usu_nombres}</b><br>
+                            ${come.come_contenido}<br>
+                            <b>Enviado:</b> ${come.come_time}
+                        </p>`
+            });
+            $('#cont-comentarios').append(body)
+        }   
+    } catch (err) {
+        M.toast({ html: err, classes: 'rounded red darken-2' })
+    }
+}
+
+function insertarComentario(event) {
+    if(event.keyCode == 13) {
+        let documento = ""
+        if(localStorage.getItem('estudiante')) 
+            documento = JSON.parse(localStorage.getItem('estudiante')).num_documento
+        else if(localStorage.getItem('asesor')) 
+            documento = JSON.parse(localStorage.getItem('asesor')).num_documento
+        let idAsesoria = JSON.parse(localStorage.getItem('comentarios')).results[0].asesoria_ase_id
+        let cont = document.getElementById('inputComentar')
+        let contenido = cont.value
+        if(idAsesoria && documento && contenido) {
+            $.post(
+                URL + "Comentario/agregar",
+                { idAsesoria, documento, contenido },
+                res => {
+                    try {
+                        if(res == 1) {
+                            M.toast({ html: "Comentario agregado correctamente", classes: 'rounded cyan darken-2' })
+                            verComentariosAsesoria(idAsesoria)
+                        } else {
+                            M.toast({ html: res, classes: 'rounded yellow darken-2' })
+                        }
+                    } catch (err) {
+                        M.toast({ html: err, classes: 'rounded red darken-2' })
+                    }
+                }
+            )
+        } else {
+            M.toast({ html: "Escribe tu comentario", classes: 'rounded yellow darken-2' })
+        }
+    }
+}
+
 $().ready(()=>{
     let URLactual = window.location.pathname;
     usuario.userData(URLactual);
@@ -325,11 +376,20 @@ $().ready(()=>{
         usuario.cargarAsesores('Todos')
     }
     if(URLactual == '/sistema_asesorias/Perfil/asesor') usuario.cargarPerfilAsesor()
-    if(URLactual == '/sistema_asesorias/Asesor/miperfil') usuario.cargarPerfilPropioAsesor()
-    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarPerfilEstudiante()
+    if(URLactual == '/sistema_asesorias/Asesor/miperfil') {
+        usuario.cargarPerfilPropioAsesor()
+        asesor.cargarAsesoriasAgendadas()
+    }
+    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') {
+        estudiante.cargarPerfilEstudiante()
+        estudiante.cargarAsesoriasAgendadas()
+    }
     if(URLactual == '/sistema_asesorias/Estudiante/EditarPerfil') estudiante.cargarEditarPerfilEstudiante()
     if(URLactual == '/sistema_asesorias/Registro/carga') localStorage.clear()
-    if(URLactual == '/sistema_asesorias/Estudiante/miperfil') estudiante.cargarAsesoriasAgendadas()
-    if(URLactual == '/sistema_asesorias/Asesor/miperfil') asesor.cargarAsesoriasAgendadas()
+    if(URLactual == '/sistema_asesorias/Comentario/comentario') {
+        imprimirComentarios()
+        let comentario = document.getElementById('inputComentar')
+        comentario.addEventListener('keypress', insertarComentario)
+    }
 
 })

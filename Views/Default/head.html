@@ -28,46 +28,6 @@
       font-family: 'Raleway', sans-serif;
     }
 
-    ::-webkit-input-placeholder {
-      text-indent: 0px;
-      transition: text-indent .4s ease;
-    }
-
-    ::-moz-placeholder {
-      text-indent: 0px;
-      transition: text-indent .4s ease;
-    }
-
-    :-moz-placeholder {
-      text-indent: 0px;
-      transition: text-indent .4s ease;
-    }
-
-    :-ms-input-placeholder {
-      text-indent: 0px;
-      transition: text-indent .4s ease;
-    }
-
-    :focus::-webkit-input-placeholder {
-      text-indent: -700px;
-      transition: text-indent .4s ease;
-    }
-
-    :focus::-moz-placeholder {
-      text-indent: -700px;
-      transition: text-indent .4s ease;
-    }
-
-    :focus:-moz-placeholder {
-      text-indent: -700px;
-      transition: text-indent .4s ease;
-    }
-
-    :focus:-ms-input-placeholder {
-      text-indent: -700px;
-      transition: text-indent .4s ease;
-    }
-
     #buscadorPrincipal {
       background-color: #FFF;
       border-radius: 20px;
@@ -76,6 +36,18 @@
     }
 
     #buscadorPrincipal::placeholder {
+      color: #888888;
+      text-align: center;
+    }
+
+    #inputComentar {
+      background-color: #FFF;
+      border-radius: 20px;
+      color: #303030;
+      padding: 0 10px;
+    }
+
+    #inputComentar::placeholder {
       color: #888888;
       text-align: center;
     }
@@ -113,6 +85,10 @@
       -webkit-border-radius: 15px 15px 15px 15px;
       border: 0px solid #000000;
       background: #f0f0f0;
+    }
+
+    .colorback {
+      background-color: #f0f0f0;
     }
 
     .colorbase {
@@ -196,6 +172,16 @@
       border-radius: 10px;
       text-align: center;
       border: 1px dashed white;
+    }
+
+    .contenedorComentarios {
+      font-size: 13px;
+      color: black;
+      border-radius: 10px;
+      text-align: left;
+      padding: 8px;
+      box-shadow: 1px 1px 5px black;
+      margin-bottom: 10px;
     }
 
   </style>
