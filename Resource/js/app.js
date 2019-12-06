@@ -315,20 +315,48 @@ function verComentariosAsesoria(idAsesoria) {
     )
 }
 
+function recargarComentarios(idAsesoria) {
+    $.get(
+        URL + "Comentario/obtener",
+        { idAsesoria },
+        res => {
+            try {
+                localStorage.setItem('comentarios', res)
+                imprimirComentarios()
+            } catch (err) {
+                M.toast({ html: err, classes: 'rounded red darken-2' })
+            }
+        }
+    )
+}
+
+function soyYo(a, b) {
+    if(a == b) return "blue lighten-3"
+    else return "grey lighten-2"
+}
+
 function imprimirComentarios() {
     try {
+        $('#cont-comentarios > div').remove()
         if(localStorage.getItem('comentarios')) {
-            let comentarios = JSON.parse(localStorage.getItem('comentarios')).results
-            let body = ""
+            let documentoSesion = ""
+            if(localStorage.getItem('estudiante'))
+                documentoSesion = JSON.parse(localStorage.getItem('estudiante')).num_documento
+            else if(localStorage.getItem('asesor'))
+                documentoSesion = JSON.parse(localStorage.getItem('asesor')).num_documento
+            let comentarios = JSON.parse(localStorage.getItem('comentarios')).comentarios
+            let body = `<div class="row">`
             comentarios.forEach(come => {
-                body += `<p style="margin-bottom: 10px;" class="grey light-1 contenedorComentarios">
-                            <b>${come.usu_nombres}</b><br>
-                            ${come.come_contenido}<br>
-                            <b>Enviado:</b> ${come.come_time}
-                        </p>`
+                console.log(`${come.usuario_usu_documento} - ${documentoSesion}`)
+                body += `<p style="margin-bottom: 10px;" class="${soyYo(come.usuario_usu_documento, documentoSesion)} contenedorComentarios">
+                        <b>${come.usu_nombres}</b><br>
+                        ${come.come_contenido}<br>
+                        <b>Enviado:</b> ${come.come_time}
+                    </p>`
             });
+            body += `</div>`
             $('#cont-comentarios').append(body)
-        }   
+        }
     } catch (err) {
         M.toast({ html: err, classes: 'rounded red darken-2' })
     }
@@ -339,9 +367,9 @@ function insertarComentario(event) {
         let documento = ""
         if(localStorage.getItem('estudiante')) 
             documento = JSON.parse(localStorage.getItem('estudiante')).num_documento
-        else if(localStorage.getItem('asesor')) 
+        else if(localStorage.getItem('asesor'))
             documento = JSON.parse(localStorage.getItem('asesor')).num_documento
-        let idAsesoria = JSON.parse(localStorage.getItem('comentarios')).results[0].asesoria_ase_id
+        let idAsesoria = JSON.parse(localStorage.getItem('comentarios')).ase_id
         let cont = document.getElementById('inputComentar')
         let contenido = cont.value
         if(idAsesoria && documento && contenido) {
@@ -351,8 +379,9 @@ function insertarComentario(event) {
                 res => {
                     try {
                         if(res == 1) {
-                            M.toast({ html: "Comentario agregado correctamente", classes: 'rounded cyan darken-2' })
-                            verComentariosAsesoria(idAsesoria)
+                            cont.value = ""
+                            recargarComentarios(idAsesoria)
+                            //M.toast({ html: "Comentario agregado correctamente", classes: 'rounded cyan darken-2' })
                         } else {
                             M.toast({ html: res, classes: 'rounded yellow darken-2' })
                         }

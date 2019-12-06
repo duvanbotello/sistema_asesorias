@@ -18,13 +18,22 @@
         }
 
         function obtener($idAsesoria) {
+            $attr = "*";
+            $tables = "asesoria";
+            $where = "ase_id = :idAsesoria";
+            $params = array(
+                "idAsesoria" => $idAsesoria
+            );
+            $asesoria = $this->db->select($attr, $tables, $where, $params)['results'][0];
             $attr = "concat(u.usu_nombres, ' ', u.usu_apellidos) as usu_nombres, c.*";
             $tables = "comentario c, usuario u";
             $where = "c.usuario_usu_documento = u.usu_documento and asesoria_ase_id = :idAsesoria order by c.come_time asc";
             $params = array(
                 "idAsesoria" => $idAsesoria
             );
-            return $this->db->select($attr, $tables, $where, $params);
+            $comentarios = $this->db->select($attr, $tables, $where, $params)['results'];
+            $asesoria['comentarios'] = $comentarios;
+            return $asesoria;
         }
 
     }
