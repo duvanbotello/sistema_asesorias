@@ -13,11 +13,5 @@ class About extends Controllers
         require VIEWS . DFT . "footer.html";
     }
 
-    public function cargaContact()
-    {
-        require VIEWS . DFT . "head.html";
-        $this->view->render($this, "contact");
-        require VIEWS . DFT . "footer.html";
-    }
 
 }

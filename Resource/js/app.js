@@ -45,20 +45,6 @@ var sessionCloseAsesor = () => {
     usuario.sessionCLoseAsesor();
 }
 
-var recuperarPassword = () => {
-    var email = window.document.getElementById("email2")
-    if (validarCorreo(email)) usuario.recuperarPassword(email.value)
-}
-
-var actualizarPassword = () => {
-    var password = window.document.getElementById('password')
-    var password2 = window.document.getElementById('password2')
-    if (validarContrasena(password) && validarContrasena(password2)) {
-        if (password.value === password2.value) usuario.actualizarPassword(password.value)
-        else M.toast({ html: 'Tus contraseñas no coinciden', classes: 'rounded cyan darken-2' })
-    }
-}
-
 var registrar = () => {
     let asignaturas = localStorage.getItem('asignaturas')
     var nombres = window.document.getElementById('nombres')

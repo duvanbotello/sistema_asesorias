@@ -80,30 +80,6 @@ class Usuario{
         localStorage.removeItem("asesor")
     }
 
-    recuperarPassword(email) {
-        $.post(URL + "Login/recuperarPassword", {email},
-            res => {
-                //console.log(res)
-                if (res == 0) {
-                    M.toast({ html: 'Solicitud enviada a su correo electronico', classes: 'rounded cyan darken-2' })
-                    $('#formRecuperar')[0].reset()
-                } else M.toast({ html: res })
-            }
-        )
-    }
-
-    actualizarPassword(password) {
-        $.post(URL + "Login/actualizarPassword", {password},
-            res => {
-                //console.log(res)
-                if (res == 0) {
-                    M.toast({ html: 'Contraseña actualizada', classes: 'rounded cyan darken-2' })
-                    // $('#formActualizar')[0].reset()
-                } else M.toast({ html: res })
-            }
-        )
-    }
-
     userData(URLactual) {
         //si nos encontramos en el login elimino los datos de navegacion que estan en el navegador
         //PATHNAME es una contante que inicie en config.js
